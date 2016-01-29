@@ -56,20 +56,48 @@ Object.defineProperty(exports, "__esModule", {
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var mousestop = new Event('mousestop');
+var timer = undefined,
+    startCoords = undefined,
+    endCoords = undefined;
+
 var MouseMove = function () {
   function MouseMove() {
     _classCallCheck(this, MouseMove);
 
-    console.log('sad');
-    this.init();
+    this.captureEvents();
   }
 
   _createClass(MouseMove, [{
-    key: 'init',
-    value: function init() {
+    key: 'captureEvents',
+    value: function captureEvents() {
+      var self = this;
+
+      // start tracking mouse position
       window.addEventListener('mousemove', function (e) {
+        if (startCoords === null || !startCoords) startCoords = [e.pageX, e.pageY];
+        endCoords = [e.pageX, e.pageY];
+        self.mouseStartTimer(startCoords, endCoords);
+      });
+
+      // handle the coordinates
+      window.addEventListener('mousestop', function (e) {
         console.log(e);
       });
+    }
+  }, {
+    key: 'mouseStartTimer',
+    value: function mouseStartTimer(coords) {
+      if (timer) clearTimeout(timer);
+
+      timer = setTimeout(function () {
+        mousestop.coords = {
+          start: startCoords,
+          end: endCoords
+        };
+        window.dispatchEvent(mousestop);
+        startCoords = null;
+      }, 100);
     }
   }]);
 
