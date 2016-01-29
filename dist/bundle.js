@@ -82,7 +82,7 @@ var MouseMove = function () {
 
       // handle the coordinates
       window.addEventListener('mousestop', function (e) {
-        console.log(e);
+        // need to calculate and save distance here
       });
     }
   }, {

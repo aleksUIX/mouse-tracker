@@ -20,14 +20,14 @@ export default class MouseMove{
 
     // handle the coordinates
     window.addEventListener('mousestop', function(e) {
-      console.log(e);
+      // need to calculate and save distance here
     })
   }
 
   mouseStartTimer(coords) {
     if (timer)
       clearTimeout(timer);
-      
+
     timer = setTimeout(function() {
       mousestop.coords = {
         start: startCoords,
