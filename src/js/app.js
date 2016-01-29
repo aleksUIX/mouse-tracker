@@ -1,9 +1,10 @@
 //import MouseMove from './modules/MouseMove';
 
-class App {
+
+
+export default class App {
   constructor() {
+    console.log('asd');
     console.log('asd');
   }
 }
-
-export default App
