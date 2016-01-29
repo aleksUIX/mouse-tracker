@@ -57,6 +57,7 @@ Object.defineProperty(exports, "__esModule", {
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var mousestop = new Event('mousestop');
+var windowObject = window || {};
 var timer = undefined,
     startCoords = undefined,
     endCoords = undefined;
@@ -74,14 +75,15 @@ var MouseMove = function () {
       var self = this;
 
       // start tracking mouse position
-      window.addEventListener('mousemove', function (e) {
+      windowObject.addEventListener('mousemove', function (e) {
         if (startCoords === null || !startCoords) startCoords = [e.pageX, e.pageY];
+
         endCoords = [e.pageX, e.pageY];
         self.mouseStartTimer(startCoords, endCoords);
       });
 
       // handle the coordinates
-      window.addEventListener('mousestop', function (e) {
+      windowObject.addEventListener('mousestop', function (e) {
         // need to calculate and save distance here
       });
     }
@@ -95,7 +97,7 @@ var MouseMove = function () {
           start: startCoords,
           end: endCoords
         };
-        window.dispatchEvent(mousestop);
+        windowObject.dispatchEvent(mousestop);
         startCoords = null;
       }, 100);
     }
