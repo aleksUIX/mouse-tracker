@@ -1,10 +1,12 @@
-//import MouseMove from './modules/MouseMove';
+import MouseMove from './modules/MouseMove';
 
 
 
 export default class App {
   constructor() {
-    console.log('asd');
-    console.log('asd');
+    this.initEvent();
+  }
+  initEvent() {
+    const moveEvent = new MouseMove();
   }
 }
