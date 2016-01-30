@@ -2,46 +2,48 @@
 
 const mousestop = new Event('mousestop');
 const windowObject = window || {};
-let timer, endCoords;
 
 export default class MouseMove {
   constructor() {
     this.startCoords = null;
+    this.timer = null;
 
     this.captureEvents();
   }
 
   captureEvents() {
-    const self = this;
-
     // start tracking mouse position
-    windowObject.addEventListener('mousemove', function(e) {
-      if (self.startCoords === null || !self.startCoords)
-        self.startCoords = [e.pageX, e.pageY];
-
-      self.mouseStartTimer(self.startCoords, [e.pageX, e.pageY]);
-    });
+    windowObject.addEventListener('mousemove', this.mouseMoveHandler.bind(this));
 
     // handle the coordinates
-    windowObject.addEventListener('mousestop', function(e) {
-      console.log(e.coords);
-      // need to calculate and save distance here
-    });
+    windowObject.addEventListener('mousestop', this.mouseStopHandler.bind(this));
+  }
+
+  mouseMoveHandler(e) {
+    if (this.startCoords === null || !this.startCoords)
+      this.startCoords = [e.pageX, e.pageY];
+
+    this.mouseStartTimer(this.startCoords, [e.pageX, e.pageY]);
+  }
+
+  mouseStopHandler(e) {
+    console.log(e.coords);
+    // need to calculate and save distance here
   }
 
   mouseStartTimer(startCoords, endCoords) {
-    const self = this;
+    if (this.timer)
+      clearTimeout(this.timer);
 
-    if (timer)
-      clearTimeout(timer);
-
-    timer = setTimeout(function() {
+    function timeoutHandler() {
       mousestop.coords = {
         start: startCoords,
         end: endCoords
       };
       windowObject.dispatchEvent(mousestop);
-      self.startCoords = null;
-    }, 100);
+      this.startCoords = null;
+    }
+
+    this.timer = setTimeout(timeoutHandler.bind(this), 100);
   }
 }

@@ -58,14 +58,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var mousestop = new Event('mousestop');
 var windowObject = window || {};
-var timer = undefined,
-    endCoords = undefined;
 
 var MouseMove = function () {
   function MouseMove() {
     _classCallCheck(this, MouseMove);
 
     this.startCoords = null;
+    this.timer = null;
 
     this.captureEvents();
   }
@@ -73,36 +72,40 @@ var MouseMove = function () {
   _createClass(MouseMove, [{
     key: 'captureEvents',
     value: function captureEvents() {
-      var self = this;
-
       // start tracking mouse position
-      windowObject.addEventListener('mousemove', function (e) {
-        if (self.startCoords === null || !self.startCoords) self.startCoords = [e.pageX, e.pageY];
-
-        self.mouseStartTimer(self.startCoords, [e.pageX, e.pageY]);
-      });
+      windowObject.addEventListener('mousemove', this.mouseMoveHandler.bind(this));
 
       // handle the coordinates
-      windowObject.addEventListener('mousestop', function (e) {
-        console.log(e.coords);
-        // need to calculate and save distance here
-      });
+      windowObject.addEventListener('mousestop', this.mouseStopHandler.bind(this));
+    }
+  }, {
+    key: 'mouseMoveHandler',
+    value: function mouseMoveHandler(e) {
+      if (this.startCoords === null || !this.startCoords) this.startCoords = [e.pageX, e.pageY];
+
+      this.mouseStartTimer(this.startCoords, [e.pageX, e.pageY]);
+    }
+  }, {
+    key: 'mouseStopHandler',
+    value: function mouseStopHandler(e) {
+      console.log(e.coords);
+      // need to calculate and save distance here
     }
   }, {
     key: 'mouseStartTimer',
     value: function mouseStartTimer(startCoords, endCoords) {
-      var self = this;
+      if (this.timer) clearTimeout(this.timer);
 
-      if (timer) clearTimeout(timer);
-
-      timer = setTimeout(function () {
+      function timeoutHandler() {
         mousestop.coords = {
           start: startCoords,
           end: endCoords
         };
         windowObject.dispatchEvent(mousestop);
-        self.startCoords = null;
-      }, 100);
+        this.startCoords = null;
+      }
+
+      this.timer = setTimeout(timeoutHandler.bind(this), 100);
     }
   }]);
 
