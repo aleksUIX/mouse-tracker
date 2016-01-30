@@ -57,7 +57,6 @@ Object.defineProperty(exports, "__esModule", {
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var mousestop = new Event('mousestop');
-var windowObject = window || {};
 
 var MouseMove = function () {
   function MouseMove() {
@@ -65,6 +64,7 @@ var MouseMove = function () {
 
     this.startCoords = null;
     this.timer = null;
+    this.windowObject = window || {};
 
     this.captureEvents();
   }
@@ -73,10 +73,10 @@ var MouseMove = function () {
     key: 'captureEvents',
     value: function captureEvents() {
       // start tracking mouse position
-      windowObject.addEventListener('mousemove', this.mouseMoveHandler.bind(this));
+      this.windowObject.addEventListener('mousemove', this.mouseMoveHandler.bind(this));
 
       // handle the coordinates
-      windowObject.addEventListener('mousestop', this.mouseStopHandler.bind(this));
+      this.windowObject.addEventListener('mousestop', this.mouseStopHandler.bind(this));
     }
   }, {
     key: 'mouseMoveHandler',
@@ -89,23 +89,28 @@ var MouseMove = function () {
     key: 'mouseStopHandler',
     value: function mouseStopHandler(e) {
       console.log(e.coords);
-      // need to calculate and save distance here
+      // TODO: need to calculate and save distance here
     }
   }, {
     key: 'mouseStartTimer',
     value: function mouseStartTimer(startCoords, endCoords) {
+      // if there is an existing timer
+      // destroy it so that a continuous motion
+      // is not counted as multiple movements
       if (this.timer) clearTimeout(this.timer);
 
+      this.timer = setTimeout(timeoutHandler.bind(this), 100);
+
+      // this function will reset the starting coordinates
+      // and dispatch mouse stop event
       function timeoutHandler() {
         mousestop.coords = {
           start: startCoords,
           end: endCoords
         };
-        windowObject.dispatchEvent(mousestop);
+        this.windowObject.dispatchEvent(mousestop);
         this.startCoords = null;
       }
-
-      this.timer = setTimeout(timeoutHandler.bind(this), 100);
     }
   }]);
 
