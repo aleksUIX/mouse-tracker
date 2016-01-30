@@ -6,7 +6,14 @@ var browserify = require('browserify');
 var watchify = require('watchify');
 var babel = require('babelify');
 var connect = require('gulp-connect');
+var mocha = require('gulp-mocha');
+var util = require('gulp-util');
 
+gulp.task('test', function () {
+    return gulp.src(['src/**/*Spec.js'], { read: false })
+        .pipe(mocha({ reporter: 'spec' }))
+        .on('error', util.log);
+});
 
 function compile(watch) {
   var bundler = watchify(browserify('./src/js/entry.js', { debug: true }).transform(babel, {presets: ["es2015"]}));
@@ -25,6 +32,7 @@ function compile(watch) {
   if (watch) {
     bundler.on('update', function() {
       console.log('-> bundling...');
+      gulp.start('test');
       rebundle();
     });
   }
@@ -45,5 +53,6 @@ gulp.task('connect', function() {
 
 gulp.task('build', function() { return compile(); });
 gulp.task('watch', function() { return watch(); });
+
 
 gulp.task('default', ['watch', 'connect']);
