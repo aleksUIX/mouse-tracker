@@ -2,10 +2,12 @@
 
 const mousestop = new Event('mousestop');
 const windowObject = window || {};
-let timer, startCoords, endCoords;
+let timer, endCoords;
 
-export default class MouseMove{
+export default class MouseMove {
   constructor() {
+    this.startCoords = null;
+
     this.captureEvents();
   }
 
@@ -14,20 +16,22 @@ export default class MouseMove{
 
     // start tracking mouse position
     windowObject.addEventListener('mousemove', function(e) {
-      if (startCoords === null || !startCoords)
-        startCoords = [e.pageX, e.pageY];
+      if (self.startCoords === null || !self.startCoords)
+        self.startCoords = [e.pageX, e.pageY];
 
-      endCoords = [e.pageX, e.pageY];
-      self.mouseStartTimer(startCoords, endCoords);
+      self.mouseStartTimer(self.startCoords, [e.pageX, e.pageY]);
     });
 
     // handle the coordinates
     windowObject.addEventListener('mousestop', function(e) {
+      console.log(e.coords);
       // need to calculate and save distance here
-    })
+    });
   }
 
-  mouseStartTimer(coords) {
+  mouseStartTimer(startCoords, endCoords) {
+    const self = this;
+
     if (timer)
       clearTimeout(timer);
 
@@ -37,7 +41,7 @@ export default class MouseMove{
         end: endCoords
       };
       windowObject.dispatchEvent(mousestop);
-      startCoords = null;
+      self.startCoords = null;
     }, 100);
   }
 }

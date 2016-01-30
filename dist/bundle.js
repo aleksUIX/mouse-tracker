@@ -59,12 +59,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var mousestop = new Event('mousestop');
 var windowObject = window || {};
 var timer = undefined,
-    startCoords = undefined,
     endCoords = undefined;
 
 var MouseMove = function () {
   function MouseMove() {
     _classCallCheck(this, MouseMove);
+
+    this.startCoords = null;
 
     this.captureEvents();
   }
@@ -76,20 +77,22 @@ var MouseMove = function () {
 
       // start tracking mouse position
       windowObject.addEventListener('mousemove', function (e) {
-        if (startCoords === null || !startCoords) startCoords = [e.pageX, e.pageY];
+        if (self.startCoords === null || !self.startCoords) self.startCoords = [e.pageX, e.pageY];
 
-        endCoords = [e.pageX, e.pageY];
-        self.mouseStartTimer(startCoords, endCoords);
+        self.mouseStartTimer(self.startCoords, [e.pageX, e.pageY]);
       });
 
       // handle the coordinates
       windowObject.addEventListener('mousestop', function (e) {
+        console.log(e.coords);
         // need to calculate and save distance here
       });
     }
   }, {
     key: 'mouseStartTimer',
-    value: function mouseStartTimer(coords) {
+    value: function mouseStartTimer(startCoords, endCoords) {
+      var self = this;
+
       if (timer) clearTimeout(timer);
 
       timer = setTimeout(function () {
@@ -98,7 +101,7 @@ var MouseMove = function () {
           end: endCoords
         };
         windowObject.dispatchEvent(mousestop);
-        startCoords = null;
+        self.startCoords = null;
       }, 100);
     }
   }]);
