@@ -9,6 +9,7 @@ var connect = require('gulp-connect');
 var mocha = require('gulp-mocha');
 var util = require('gulp-util');
 var uglifyify = require('uglifyify');
+var sass = require('gulp-sass');
 
 
 gulp.task('test', function () {
@@ -67,8 +68,10 @@ gulp.task('connect', function() {
 });
 
 gulp.task('sass', function() {
-
+  gulp.src('./src/sass/main.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./dist'));
 });
 
 
-gulp.task('default', ['watch', 'connect']);
+gulp.task('default', ['watch', 'sass', 'connect']);
