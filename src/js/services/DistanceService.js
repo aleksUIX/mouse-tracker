@@ -7,6 +7,7 @@ export default class DistanceService {
   constructor() {
     this.data = [];
     this.calculateDistance = new CalculateDistance();
+    this.update = null;
 
     this.startService();
   }
@@ -24,8 +25,15 @@ export default class DistanceService {
     });
   }
 
+  setUpdate(callback) {
+    this.update = function(data) {
+      callback(data)
+    };
+  }
+
   pushData(entry) {
     this.data.push(entry);
+    this.update(this.data);
   }
 
   getData() {
