@@ -1,8 +1,8 @@
 
 
-export default function DistanceModel() {
+export default function DistanceModel(distance, time) {
   return {
-    totalDistance: 0,
-    lastPath: 0
+    distance: distance,
+    time: time
   }
 }

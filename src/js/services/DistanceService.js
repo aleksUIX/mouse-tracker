@@ -8,7 +8,7 @@ export default class DistanceService {
     this.calculateDistance = new CalculateDistance();
     this.startService();
 
-    this.data = new DistanceModel();
+    this.data = [];
   }
 
   startService() {
@@ -18,15 +18,14 @@ export default class DistanceService {
     this.mouseMove = new MouseMove();
     this.mouseMove.registerHandler(function(data) {
       const distance = calculate(data.coords);
-      console.log(distance + 'cm');
+      const newEntry = new DistanceModel(distance, new Date());
+      console.log(newEntry);
+
       //push(distance);
     });
   }
 
-  pushData(path) {
-    this.data.totalDistance += path;
-    this.data.lastPath = path;
-
+  pushData(entry) {
     console.log(this.data)
   }
 }
