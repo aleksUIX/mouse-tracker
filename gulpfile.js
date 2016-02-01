@@ -56,6 +56,9 @@ function watch() {
   return compile(true);
 };
 
+gulp.task('build', function() { return compile(); });
+gulp.task('watch', function() { return watch(); });
+
 gulp.task('connect', function() {
   connect.server({
     port: '3000',
@@ -63,8 +66,9 @@ gulp.task('connect', function() {
   });
 });
 
-gulp.task('build', function() { return compile(); });
-gulp.task('watch', function() { return watch(); });
+gulp.task('sass', function() {
+
+});
 
 
 gulp.task('default', ['watch', 'connect']);
