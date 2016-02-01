@@ -12,7 +12,9 @@ export default class RenderList {
     let partial = '';
     if (data) {
       data.forEach((item) => {
-        partial += `<li>item.time, item.distance</li>`;
+        const time = item.time;
+        const timePartial = `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}, ${time.getDay()} ${time.getMonth()}`;
+        partial += `<li>${timePartial}, ${item.distance}</li>`;
       });
     }
     console.log(partial);
