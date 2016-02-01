@@ -1,4 +1,4 @@
-import DataService from './modules/DataService';
+import DistanceService from './services/DistanceService';
 
 
 
