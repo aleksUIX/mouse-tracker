@@ -5,27 +5,30 @@ import DistanceModel from '../models/DistanceModel';
 
 export default class DistanceService {
   constructor() {
-    this.calculateDistance = new CalculateDistance();
-    this.startService();
-
     this.data = [];
+    this.calculateDistance = new CalculateDistance();
+
+    this.startService();
   }
 
   startService() {
     const calculate = this.calculateDistance.calculate;
-    const push = this.pushData;
+    const push = this.pushData.bind(this);
 
     this.mouseMove = new MouseMove();
     this.mouseMove.registerHandler(function(data) {
       const distance = calculate(data.coords);
       const newEntry = new DistanceModel(distance, new Date());
-      console.log(newEntry);
 
-      //push(distance);
+      push(newEntry);
     });
   }
 
   pushData(entry) {
-    console.log(this.data)
+    this.data.push(entry);
+  }
+
+  getData() {
+    return this.data;
   }
 }
