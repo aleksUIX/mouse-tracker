@@ -1,12 +1,10 @@
-import MouseMove from './modules/MouseMove';
+import DataService from './modules/DataService';
 
 
 
 export default class App {
   constructor() {
-    this.initEvent();
   }
   initEvent() {
-    const moveEvent = new MouseMove();
   }
 }
