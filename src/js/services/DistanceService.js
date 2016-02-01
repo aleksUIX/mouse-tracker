@@ -13,15 +13,20 @@ export default class DistanceService {
 
   startService() {
     const calculate = this.calculateDistance.calculate;
+    const push = this.pushData;
 
     this.mouseMove = new MouseMove();
     this.mouseMove.registerHandler(function(data) {
-      console.log(calculate(data));
+      const distance = calculate(data.coords);
+      console.log(distance);
+      //push(distance);
     });
   }
 
   pushData(path) {
     this.data.totalDistance += path;
     this.data.lastPath = path;
+
+    console.log(this.data)
   }
 }

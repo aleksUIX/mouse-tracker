@@ -6,6 +6,7 @@ export default class CalculateDistance {
   }
 
   calculate(data) {
+    
     return data;
   }
 }
