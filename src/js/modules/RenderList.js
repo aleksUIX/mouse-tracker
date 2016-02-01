@@ -4,8 +4,8 @@ import DistanceService from '../services/DistanceService';
 export default class RenderList {
   constructor(el) {
     this.distance = new DistanceService();
-    this.distance.setUpdate(this.render)
-    this.$el = document.getElementById('el');
+    this.$el = document.getElementById('data-list');
+    this.distance.setUpdate(this.render.bind(this));
   }
 
   render(data) {
@@ -14,11 +14,10 @@ export default class RenderList {
       data.forEach((item) => {
         const time = item.time;
         const timePartial = `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}, ${time.getDay()} ${time.getMonth()}`;
-        partial += `<li>${timePartial}, ${item.distance}</li>`;
+        partial += `<li>on ${timePartial}, the mouse travelled ${item.distance}cm</li>`;
       });
+      this.$el.innerHTML = partial;
     }
-    console.log(partial);
-    //this.$el.innerHTML = partial;
   }
 
 }
