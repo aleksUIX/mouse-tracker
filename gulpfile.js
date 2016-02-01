@@ -8,6 +8,8 @@ var babel = require('babelify');
 var connect = require('gulp-connect');
 var mocha = require('gulp-mocha');
 var util = require('gulp-util');
+var uglifyify = require('uglifyify');
+
 
 gulp.task('test', function () {
     return gulp.src(['src/**/*Spec.js'], { read: false })
@@ -16,7 +18,17 @@ gulp.task('test', function () {
 });
 
 function compile(watch) {
-  var bundler = watchify(browserify('./src/js/entry.js', { debug: true }).transform(babel, {presets: ["es2015"]}));
+  var bundler = watchify(
+                  browserify(
+                    './src/js/entry.js',
+                    { debug: true }
+                  ).transform(
+                    babel,
+                    {
+                      presets: ["es2015"]
+                    }
+                  ).transform('uglifyify')
+                );
 
   function rebundle() {
     bundler.bundle()

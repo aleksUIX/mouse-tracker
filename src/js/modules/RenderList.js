@@ -13,7 +13,7 @@ export default class RenderList {
     if (data) {
       data.forEach((item) => {
         const time = item.time;
-        const timePartial = `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}, ${time.getDay()} ${time.getMonth()}`;
+        const timePartial = `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`;
         partial += `<li>on ${timePartial}, the mouse travelled ${item.distance}cm</li>`;
       });
       this.$el.innerHTML = partial;
