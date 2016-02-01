@@ -6,6 +6,8 @@ export default class CalculateDistance {
   }
 
   calculate(data) {
+    const pixToCm = 0.0264;
+
     // x values
     const xMax = Math.max(data.start[0], data.end[0]);
     const xMin = Math.min(data.start[0], data.end[0]);
@@ -17,8 +19,9 @@ export default class CalculateDistance {
     const xDistance = xMax - xMin;
     const yDistance = yMax - yMin;
 
-    const pixelDistance = Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2))
+    const pixelDistance = Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
+    const cmDistance = Math.round(pixToCm * pixelDistance);
 
-    return Math.round(pixelDistance);
+    return cmDistance;
   }
 }

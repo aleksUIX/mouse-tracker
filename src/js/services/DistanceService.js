@@ -18,7 +18,7 @@ export default class DistanceService {
     this.mouseMove = new MouseMove();
     this.mouseMove.registerHandler(function(data) {
       const distance = calculate(data.coords);
-      console.log(distance);
+      console.log(distance + 'cm');
       //push(distance);
     });
   }
