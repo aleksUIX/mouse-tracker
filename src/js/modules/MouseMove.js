@@ -6,9 +6,14 @@ export default class MouseMove {
     this.timer = null;
     this.windowObject = window || {};
     this.mousestop = new Event('mousestop');
+    this.externalHandler = null;
 
     // attach event handlers
     this.captureEvents();
+  }
+
+  registerHandler(callback) {
+    this.externalHandler = callback;
   }
 
   captureEvents() {
@@ -26,8 +31,8 @@ export default class MouseMove {
     }
 
     function mouseStopHandler(e) {
-      console.log(e.coords);
-      // TODO: need to calculate and save distance here
+      if (this.externalHandler !== null)
+        this.externalHandler(e);
     }
   }
 
