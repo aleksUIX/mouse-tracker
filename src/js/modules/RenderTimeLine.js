@@ -74,7 +74,7 @@ export default class RenderTimeLine {
           class: 'line',
           d: line,
           fill: 'none',
-          'stroke-width': 4,
+          'stroke-width': 2,
           stroke: 'black'
         })
         .attr("class", "line")

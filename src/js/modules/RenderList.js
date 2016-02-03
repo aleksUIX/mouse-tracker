@@ -11,8 +11,6 @@ export default class RenderList {
   render(data) {
     let partial = '';
     if (data) {
-      console.log(data);
-
       data.forEach((item) => {
         const time = item.time;
         const timePartial = `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`;
