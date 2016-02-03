@@ -43,7 +43,7 @@ class MouseMove {
     if (this.timer)
       clearTimeout(this.timer);
 
-    this.timer = setTimeout(timeoutHandler.bind(this), 100);
+    this.timer = setTimeout(timeoutHandler.bind(this), 50);
 
     // this function will reset the starting coordinates
     // and dispatch mouse stop event

@@ -36,7 +36,7 @@ export default class RenderTimeLine {
     var line = d3.svg.line()
         .x(function(d) { return x(d.time); })
         .y(function(d) { return y(d.distance); })
-        .interpolate("basis");;
+        .interpolate('monotone');
 
     var svg = d3.select(this.$el)
 
