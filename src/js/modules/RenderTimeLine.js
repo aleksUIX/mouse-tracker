@@ -8,7 +8,7 @@ export default class RenderTimeLine {
 
     this.distance = new DistanceService();
     this.$el = document.getElementById(el);
-    this.distance.setUpdate(this.render.bind(this));
+    this.distance.registerCallback(this.render.bind(this));
 
   }
 
