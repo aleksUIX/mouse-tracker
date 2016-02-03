@@ -14,8 +14,8 @@ export default class RenderTimeLine {
 
   render(data) {
     var margin = {top: 20, right: 20, bottom: 30, left: 50},
-    width = 500 - margin.left - margin.right,
-    height = 300 - margin.top - margin.bottom;
+    width = 350 - margin.left - margin.right,
+    height = 150 - margin.top - margin.bottom;
 
     var formatDate = d3.time.format("%d-%b-%y");
 
@@ -35,7 +35,8 @@ export default class RenderTimeLine {
 
     var line = d3.svg.line()
         .x(function(d) { return x(d.time); })
-        .y(function(d) { return y(d.distance); });
+        .y(function(d) { return y(d.distance); })
+        .interpolate("basis");;
 
     var svg = d3.select(this.$el)
 
@@ -61,7 +62,7 @@ export default class RenderTimeLine {
     svg.append("g")
         .attr("class", "y axis")
         .call(yAxis)
-      .append("text")
+        .append("text")
         .attr("transform", "rotate(-90)")
         .attr("y", 6)
         .attr("dy", ".71em")
