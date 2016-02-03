@@ -71,8 +71,12 @@ gulp.task('sass', function() {
   gulp.src('./src/sass/main.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('./dist'))
-    .pipe(connect.reload());;
+    .pipe(connect.reload());
+});
+
+gulp.task('sass-watch', function() {
+  gulp.watch('./src/sass/*.scss', ['sass']);
 });
 
 
-gulp.task('default', ['watch', 'sass', 'connect']);
+gulp.task('default', ['watch', 'sass-watch', 'sass', 'connect']);
