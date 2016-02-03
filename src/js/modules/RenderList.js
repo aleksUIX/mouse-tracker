@@ -3,9 +3,9 @@ import DistanceService from '../services/DistanceService';
 
 export default class RenderList {
   constructor(el) {
-    this.distance = new DistanceService();
-    this.$el = document.getElementById('data-list');
-    this.distance.setUpdate(this.render.bind(this));
+    // this.distance = new DistanceService();
+    // this.$el = document.getElementById(el);
+    // this.distance.setUpdate(this.render.bind(this));
   }
 
   render(data) {

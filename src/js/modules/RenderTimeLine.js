@@ -1,10 +1,15 @@
 import d3 from 'd3';
 
+import DistanceService from '../services/DistanceService';
+
 
 export default class RenderTimeLine {
   constructor(el) {
+
+    this.distance = new DistanceService();
     this.$el = document.getElementById(el);
-    console.log(this.$el);
+    this.distance.setUpdate(this.render.bind(this));
+
   }
 
   render() {
@@ -99,26 +104,24 @@ export default class RenderTimeLine {
         .attr("height", height)
         .call(zoom);
 
-    const data = [
+    var data = [
       {
-        time: new Date(5),
+        time: new Date('1988-01-01'),
         distance: 5
       },
       {
-        time: new Date(10),
+        time: new Date('1988-01-02'),
         distance: 15
       },
       {
-        time: new Date(15),
+        time: new Date('1988-01-03'),
         distance: 25
       }
     ];
 
-    console.log(data);
-
     data.forEach(function(d) {
-      d.date = parseDate(d.date);
-      d.value = +d.value;
+      d.date = parseDate(d.time);
+      d.value = + d.distance;
     });
 
     x.domain([new Date(1999, 0, 1), new Date(2003, 0, 0)]);
