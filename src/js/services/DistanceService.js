@@ -3,12 +3,13 @@ import CalculateDistance from '../helpers/CalculateDistance';
 import DistanceModel from '../models/DistanceModel';
 
 
-export default class DistanceService {
+class DistanceService {
   constructor() {
     this.data = [];
     this.calculateDistance = new CalculateDistance();
     this.update = null;
     this.callbacks = [];
+    this.mouseMove = MouseMove;
 
     this.startService();
   }
@@ -17,7 +18,7 @@ export default class DistanceService {
     const calculate = this.calculateDistance.calculate;
     const push = this.pushData.bind(this);
 
-    this.mouseMove = new MouseMove();
+    //this.mouseMove = new MouseMove();
     this.mouseMove.registerHandler(function(data) {
       const distance = calculate(data.coords);
       const newEntry = new DistanceModel(distance, new Date());
@@ -36,7 +37,6 @@ export default class DistanceService {
       this.callbacks.forEach(function(callback) {
         callback(data);
       });
-      //callback(data)
     };
   }
 
@@ -49,3 +49,5 @@ export default class DistanceService {
     return this.data;
   }
 }
+
+export default new DistanceService()
