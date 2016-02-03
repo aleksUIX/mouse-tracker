@@ -2,8 +2,6 @@
 
 
 export default class CalculateDistance {
-  constructor() {
-  }
 
   calculate(data) {
     const pixToCm = 0.0264;
@@ -24,4 +22,5 @@ export default class CalculateDistance {
 
     return cmDistance;
   }
+  
 }

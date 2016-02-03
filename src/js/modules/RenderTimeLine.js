@@ -6,7 +6,7 @@ import DistanceService from '../services/DistanceService';
 export default class RenderTimeLine {
   constructor(el) {
 
-    this.distance = new DistanceService();
+    this.distance = DistanceService;
     this.$el = document.getElementById(el);
     this.distance.registerCallback(this.render.bind(this));
 

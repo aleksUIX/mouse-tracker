@@ -1,6 +1,4 @@
-
-
-export default class MouseMove {
+class MouseMove {
   constructor() {
     this.startCoords = null;
     this.timer = null;
@@ -18,6 +16,8 @@ export default class MouseMove {
 
   captureEvents() {
     // event listeners
+    this.windowObject.removeEventListener('mousemove');
+    this.windowObject.removeEventListener('mousestop');
     this.windowObject.addEventListener('mousemove', mouseMoveHandler.bind(this));
     this.windowObject.addEventListener('mousestop', mouseStopHandler.bind(this));
 
@@ -58,3 +58,5 @@ export default class MouseMove {
 
   }
 }
+
+export default new MouseMove();
