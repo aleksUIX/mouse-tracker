@@ -70,7 +70,8 @@ gulp.task('connect', function() {
 gulp.task('sass', function() {
   gulp.src('./src/sass/main.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('./dist'));
+    .pipe(gulp.dest('./dist'))
+    .pipe(connect.reload());;
 });
 
 
