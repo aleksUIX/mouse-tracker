@@ -1,8 +1,8 @@
 ### Install
-clone repo
-run: npm Install
-run: gulp
-open: localhost:3000
+ * clone repo
+ * run: npm Install
+ * run: gulp
+ * open: localhost:3000
 
 
 ### Features
