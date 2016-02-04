@@ -13,6 +13,18 @@ export default class RenderTimeLine {
   }
 
   render(data) {
+    function draw() {
+
+    }
+
+    function update() {
+
+    }
+
+    function drawData() {
+
+    }
+
     var margin = {top: 20, right: 20, bottom: 30, left: 50},
     width = 350 - margin.left - margin.right,
     height = 150 - margin.top - margin.bottom;
