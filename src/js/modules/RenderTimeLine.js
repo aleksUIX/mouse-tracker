@@ -9,10 +9,21 @@ export default class RenderTimeLine {
     this.distance = DistanceService;
     this.$el = document.getElementById(el);
     this.distance.registerCallback(this.render.bind(this));
+    this.widgetExists = false;
 
   }
 
   render(data) {
+    // check if widget is in the DOM
+    if (this.widgetExists)
+      update(data); // updates the path
+    else {
+      draw(data) // draws the whole SVG widget area
+      this.widgetExists = true; // set the flag to notify that svg element is put in place
+    }
+
+
+
     // variable declarations;
     var margin = {
         top: 20,
@@ -30,7 +41,10 @@ export default class RenderTimeLine {
       line,
       svg = d3.select(this.$el);
 
-    function draw() {
+
+
+    function draw(data) {
+
       formatDate = d3.time.format("%d-%b-%y");
 
       x = d3.time.scale()
@@ -54,10 +68,6 @@ export default class RenderTimeLine {
           return y(d.distance);
         });
 
-      // TO DO: we want to only update the path
-      // not the whole chart area
-      svg.selectAll('*').remove();
-
       svg = svg.append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
@@ -67,6 +77,7 @@ export default class RenderTimeLine {
       x.domain(d3.extent(data, function(d) {
         return d.time;
       }));
+
       y.domain(d3.extent(data, function(d) {
         return d.distance;
       }));
@@ -86,6 +97,14 @@ export default class RenderTimeLine {
         .style("text-anchor", "end")
         .text("Price ($)");
 
+      update(data);
+    }
+
+    function update(data) {
+      // remove old line
+      svg.selectAll('.line')
+        .remove();
+
       svg.append("path")
         .datum(data)
         .attr({
@@ -97,17 +116,6 @@ export default class RenderTimeLine {
         })
         .attr("class", "line")
         .attr("d", line)
-
-    }
-
-    draw();
-
-    function update() {
-
-    }
-
-    function drawData() {
-
     }
   }
 }
