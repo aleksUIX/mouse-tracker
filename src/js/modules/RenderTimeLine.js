@@ -13,6 +13,18 @@ export default class RenderTimeLine {
   }
 
   render(data) {
+    // variable declarations;
+    var margin,
+      width,
+      height,
+      formatDate,
+      x,
+      y,
+      xAxis,
+      yAxis,
+      line,
+      svg;
+
     function draw() {
 
     }
