@@ -14,3 +14,4 @@
 ### What's the point of this?
 - explore ways of tracking user behaviour
 - explore new forms and lifecycles of d3 visualisations
+- explore ways of unit testing of d3 code
