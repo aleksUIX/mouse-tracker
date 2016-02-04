@@ -8,23 +8,14 @@ export default class RenderTimeLine {
 
     this.distance = DistanceService;
     this.$el = document.getElementById(el);
+    this.render = new this.Render(this.$el);
     this.distance.registerCallback(this.render.bind(this));
     this.widgetExists = false;
 
   }
 
-  render(data) {
-    // check if widget is in the DOM
-    if (this.widgetExists)
-      update(data); // updates the path
-    else {
-      draw(data) // draws the whole SVG widget area
-      this.widgetExists = true; // set the flag to notify that svg element is put in place
-    }
-
-
-
-    // variable declarations;
+  Render($el) {
+    // variable declarations and placeholders
     var margin = {
         top: 20,
         right: 20,
@@ -39,12 +30,10 @@ export default class RenderTimeLine {
       xAxis,
       yAxis,
       line,
-      svg = d3.select(this.$el);
-
+      svg = d3.select($el);
 
 
     function draw(data) {
-
       formatDate = d3.time.format("%d-%b-%y");
 
       x = d3.time.scale()
@@ -74,13 +63,6 @@ export default class RenderTimeLine {
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-      x.domain(d3.extent(data, function(d) {
-        return d.time;
-      }));
-
-      y.domain(d3.extent(data, function(d) {
-        return d.distance;
-      }));
 
       svg.append("g")
         .attr("class", "x axis")
@@ -97,10 +79,19 @@ export default class RenderTimeLine {
         .style("text-anchor", "end")
         .text("Price ($)");
 
-      update(data);
+      update(data, line);
     }
 
-    function update(data) {
+
+    function update(data, line) {
+      x.domain(d3.extent(data, function(d) {
+        return d.time;
+      }));
+
+      y.domain(d3.extent(data, function(d) {
+        return d.distance;
+      }));
+
       // remove old line
       svg.selectAll('.line')
         .remove();
@@ -117,5 +108,17 @@ export default class RenderTimeLine {
         .attr("class", "line")
         .attr("d", line)
     }
+
+
+    return function(data) {
+      // check if widget is in the DOM
+      if (this.widgetExists)
+        update(data, line); // updates the path
+      else {
+        draw(data) // draws the whole SVG widget area
+        this.widgetExists = true; // set the flag to notify that svg element is put in place
+      }
+    }
+
   }
 }
