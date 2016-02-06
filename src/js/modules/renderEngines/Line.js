@@ -1,6 +1,7 @@
 class Line {
   constructor() {
-
+    this.define = this.defineLine;
+    this.render = this.renderFunction;
   }
 
   defineLine() {

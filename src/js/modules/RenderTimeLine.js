@@ -3,6 +3,7 @@ import d3 from 'd3';
 import DistanceService from '../services/DistanceService';
 import Line from './renderEngines/Line';
 
+console.log(new Line());
 
 export default class RenderTimeLine {
   constructor(el) {
