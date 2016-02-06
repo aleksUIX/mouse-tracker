@@ -1,6 +1,7 @@
 import d3 from 'd3';
 
 import DistanceService from '../services/DistanceService';
+import Line from './renderEngines/Line';
 
 
 export default class RenderTimeLine {
