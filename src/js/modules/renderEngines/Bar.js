@@ -1,6 +1,17 @@
 
 
 class Bar {
+  contructor() {
+
+  }
+
+  defineSeries() {
+
+  }
+
+  renderFunction() {
+
+  }
 
 }
 

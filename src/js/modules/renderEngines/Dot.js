@@ -1,7 +1,18 @@
 
 
 class Dot {
+    constructor() {
 
+    }
+
+
+    defineSeries() {
+
+    }
+
+    renderFunction() {
+
+    }
 }
 
 
