@@ -5,11 +5,11 @@ class Bar {
 
   }
 
-  defineSeries() {
+  define() {
 
   }
 
-  renderFunction() {
+  render() {
 
   }
 

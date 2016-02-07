@@ -1,18 +1,18 @@
 
 
 class Dot {
-    constructor() {
+  constructor() {
 
-    }
+  }
 
 
-    defineSeries() {
+  define() {
 
-    }
+  }
 
-    renderFunction() {
+  render() {
 
-    }
+  }
 }
 
 

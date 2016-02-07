@@ -1,10 +1,8 @@
 class Line {
   constructor() {
-    this.define = this.defineLine;
-    this.render = this.renderFunction;
   }
 
-  defineLine() {
+  define() {
     line = d3.svg.line()
       .x(function(d) {
         return x(d.time);
@@ -14,7 +12,7 @@ class Line {
       });
   }
 
-  renderFunction() {
+  render() {
     // remove old line
     svg.selectAll('.line')
       .remove();
