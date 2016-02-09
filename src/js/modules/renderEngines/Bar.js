@@ -39,7 +39,7 @@ class Bar {
       .attr({
         x: (d) => { return x(d.time); },
         y: (d) => { return y.range()[0] - y(d.distance); },
-        width: 10,
+        width: 1, // TODO : come up with a better way to calculate width of the bars
         height: (d) => { return y(d.distance); },
         fill: '#CCCCCC'
       });
