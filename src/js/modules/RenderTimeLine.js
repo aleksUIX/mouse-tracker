@@ -1,15 +1,16 @@
 import d3 from 'd3';
 
 import DistanceService from '../services/DistanceService';
-import Line from './renderEngines/Line';
-import Bar from './renderEngines/Bar';
 
+
+// This class provides an event and data wrapper
+// for time based charts
 export default class RenderTimeLine {
-  constructor(el, type) {
+  constructor(el, Type) {
 
     this.distance = DistanceService;
     this.$el = document.getElementById(el);
-    var seriesRenderer = type == 'line' ? new Line() : new Bar();
+    var seriesRenderer = new Type();
 
     this.render = new this.Render(this.$el, seriesRenderer);
     this.distance.registerCallback(this.render.bind(this));
