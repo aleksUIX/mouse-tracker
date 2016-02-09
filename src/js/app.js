@@ -8,7 +8,8 @@ export default class App {
     const renderList = new RenderList('data-list');
     renderList.render();
 
-    const renderTimeLine = new RenderTimeLine('data-timeline');
+    const renderTimeLine = new RenderTimeLine('data-timeline', 'line');
+    const renderTimeBars = new RenderTimeLine('data-timebars', 'bar');
   }
   initEvent() {
   }

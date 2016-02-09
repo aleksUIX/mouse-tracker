@@ -2,13 +2,14 @@ import d3 from 'd3';
 
 import DistanceService from '../services/DistanceService';
 import Line from './renderEngines/Line';
+import Bar from './renderEngines/Bar';
 
 export default class RenderTimeLine {
-  constructor(el) {
+  constructor(el, type) {
 
     this.distance = DistanceService;
     this.$el = document.getElementById(el);
-    var seriesRenderer = new Line();
+    var seriesRenderer = type == 'line' ? new Line() : new Bar();
 
     this.render = new this.Render(this.$el, seriesRenderer);
     this.distance.registerCallback(this.render.bind(this));
@@ -33,10 +34,8 @@ export default class RenderTimeLine {
       svg = d3.select($el),
       exists = false;
 
-    console.log(this.seriesRenderer);
 
     function draw(data) {
-      console.log('drawing')
       formatDate = d3.time.format("%d-%b-%y");
 
       x = d3.time.scale()
@@ -95,8 +94,6 @@ export default class RenderTimeLine {
 
     return function(data) {
       // check if widget is in the DOM
-
-        console.log(exists)
       if (exists)
         update(data); // updates the path
       else {
