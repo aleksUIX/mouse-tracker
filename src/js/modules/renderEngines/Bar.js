@@ -3,32 +3,40 @@ import d3 from 'd3';
 class Bar {
   contructor() {
     this.dataSeries = null;
-    this.define();
+    this.render = this.render.bind(this);
+    this.define = this.define.bind(this);
   }
 
   define(x, y) {
     // let's figure all range bands etc. here
-    console.log(x.rangeBand());
-    
 
-    return this.dataSeries;
+    var dataSeries = {
+      x: x,
+      y: y
+    }
+
+    this.dataSeries = dataSeries;
+    return dataSeries;
   }
 
   render(data, svg) {
     // remove old line
+    console.log(this.dataSeries);
+
+
     svg.selectAll('.bar')
       .remove();
 
     svg.selectAll('rect')
       .data(data)
       .append('rect')
-      // .attr({
-      //   x: ,
-      //   y: ,
-      //   width: ,
-      //   height:
-      //   fill: '#CCCCCC'
-      // })
+      .attr({
+        // x: ,
+        // y: ,
+        // width: ,
+        // height:
+        // fill: '#CCCCCC'
+      })
 
   }
 
