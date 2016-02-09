@@ -10,7 +10,6 @@ export default class RenderTimeLine {
     this.$el = document.getElementById(el);
     this.render = new this.Render(this.$el);
     this.distance.registerCallback(this.render.bind(this));
-    this.widgetExists = false;
     this.seriesRenderer = new Line();
 
   }
@@ -31,10 +30,12 @@ export default class RenderTimeLine {
       xAxis,
       yAxis,
       seriesRenderer = this.seriesRenderer,
-      svg = d3.select($el);
+      svg = d3.select($el),
+      exists = false;
 
 
-    function draw(data, line) {
+    function draw(data) {
+      console.log('drawing')
       formatDate = d3.time.format("%d-%b-%y");
 
       x = d3.time.scale()
@@ -77,7 +78,7 @@ export default class RenderTimeLine {
     }
 
 
-    function update(data, line) {
+    function update(data) {
       x.domain(d3.extent(data, function(d) {
         return d.time;
       }));
@@ -93,11 +94,13 @@ export default class RenderTimeLine {
 
     return function(data) {
       // check if widget is in the DOM
-      if (this.widgetExists)
-        update(data, line); // updates the path
+
+        console.log(exists)
+      if (exists)
+        update(data); // updates the path
       else {
-        draw(data, this.line) // draws the whole SVG widget area
-        this.widgetExists = true; // set the flag to notify that svg element is put in place
+        exists = true; // set the flag to notify that svg element is put in place
+        draw(data) // draws the whole SVG widget area
       }
     }
 
