@@ -3,13 +3,12 @@ import d3 from 'd3';
 class Bar {
   contructor() {
     this.dataSeries = null;
+    // TODO: find a way to bind parent automatically
     this.render = this.render.bind(this);
     this.define = this.define.bind(this);
   }
 
   define(x, y) {
-    // let's figure all range bands etc. here
-
     var dataSeries = {
       x: x,
       y: y
@@ -20,12 +19,8 @@ class Bar {
   }
 
   render(data, svg) {
-    // remove old line
-
     var x = this.dataSeries.x,
-      y = this.dataSeries.y
-
-    console.log(y.range());
+      y = this.dataSeries.y;
 
 
     svg.selectAll('.bar')
@@ -43,7 +38,6 @@ class Bar {
         height: (d) => { return y(d.distance); },
         fill: '#CCCCCC'
       });
-
   }
 
 }
