@@ -35,7 +35,7 @@ class Bar {
       .classed('bar', true)
       .attr({
         x: (d) => { return this.dataSeries.x(d.time); },
-        y: (d) => { return -this.dataSeries.y.range()[1] - this.dataSeries.y(d.distance); },
+        y: (d) => { return this.dataSeries.y.range()[1] - this.dataSeries.y(d.distance); },
         width: 10,
         height: (d) => { return this.dataSeries.y(d.distance); },
         fill: '#CCCCCC'
