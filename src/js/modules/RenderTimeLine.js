@@ -8,13 +8,14 @@ export default class RenderTimeLine {
 
     this.distance = DistanceService;
     this.$el = document.getElementById(el);
-    this.render = new this.Render(this.$el);
+    var seriesRenderer = new Line();
+
+    this.render = new this.Render(this.$el, seriesRenderer);
     this.distance.registerCallback(this.render.bind(this));
-    this.seriesRenderer = new Line();
 
   }
 
-  Render($el) {
+  Render($el, seriesRenderer) {
     // variable declarations and placeholders
     var margin = {
         top: 20,
@@ -29,10 +30,10 @@ export default class RenderTimeLine {
       y,
       xAxis,
       yAxis,
-      seriesRenderer = this.seriesRenderer,
       svg = d3.select($el),
       exists = false;
 
+    console.log(this.seriesRenderer);
 
     function draw(data) {
       console.log('drawing')
