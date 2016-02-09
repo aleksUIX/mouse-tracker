@@ -75,7 +75,7 @@ export default class RenderTimeLine {
         .text("Price ($)");
 
       seriesRenderer.define(x, y);
-      update(data, seriesRenderer.dataSeries);
+      update(data);
     }
 
 
