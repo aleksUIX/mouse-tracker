@@ -21,8 +21,11 @@ class Bar {
 
   render(data, svg) {
     // remove old line
-    console.log(this.dataSeries);
-    console.log(data);
+
+    var x = this.dataSeries.x,
+      y = this.dataSeries.y
+
+    console.log(y.range());
 
 
     svg.selectAll('.bar')
@@ -34,10 +37,10 @@ class Bar {
       .append('rect')
       .classed('bar', true)
       .attr({
-        x: (d) => { return this.dataSeries.x(d.time); },
-        y: (d) => { return this.dataSeries.y.range()[1] - this.dataSeries.y(d.distance); },
+        x: (d) => { return x(d.time); },
+        y: (d) => { return y.range()[0] - y(d.distance); },
         width: 10,
-        height: (d) => { return this.dataSeries.y(d.distance); },
+        height: (d) => { return y(d.distance); },
         fill: '#CCCCCC'
       });
 
