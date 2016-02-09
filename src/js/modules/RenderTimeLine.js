@@ -3,8 +3,6 @@ import d3 from 'd3';
 import DistanceService from '../services/DistanceService';
 import Line from './renderEngines/Line';
 
-console.log(new Line());
-
 export default class RenderTimeLine {
   constructor(el) {
 
@@ -13,6 +11,7 @@ export default class RenderTimeLine {
     this.render = new this.Render(this.$el);
     this.distance.registerCallback(this.render.bind(this));
     this.widgetExists = false;
+    this.seriesRenderer = new Line();
 
   }
 
@@ -31,11 +30,11 @@ export default class RenderTimeLine {
       y,
       xAxis,
       yAxis,
-      line,
+      seriesRenderer = this.seriesRenderer,
       svg = d3.select($el);
 
 
-    function draw(data) {
+    function draw(data, line) {
       formatDate = d3.time.format("%d-%b-%y");
 
       x = d3.time.scale()
@@ -50,14 +49,6 @@ export default class RenderTimeLine {
       yAxis = d3.svg.axis()
         .scale(y)
         .orient("left");
-
-      line = d3.svg.line()
-        .x(function(d) {
-          return x(d.time);
-        })
-        .y(function(d) {
-          return y(d.distance);
-        });
 
       svg = svg.append("svg")
         .attr("width", width + margin.left + margin.right)
@@ -81,7 +72,8 @@ export default class RenderTimeLine {
         .style("text-anchor", "end")
         .text("Price ($)");
 
-      update(data, line);
+      seriesRenderer.define(x, y);
+      update(data, seriesRenderer.dataSeries);
     }
 
 
@@ -94,21 +86,8 @@ export default class RenderTimeLine {
         return d.distance;
       }));
 
-      // remove old line
-      svg.selectAll('.line')
-        .remove();
-
-      svg.append("path")
-        .datum(data)
-        .attr({
-          class: 'line',
-          d: line,
-          fill: 'none',
-          'stroke-width': 2,
-          stroke: 'black'
-        })
-        .attr("class", "line")
-        .attr("d", line)
+      seriesRenderer.define(x, y);
+      seriesRenderer.render(data, svg);
     }
 
 
@@ -117,7 +96,7 @@ export default class RenderTimeLine {
       if (this.widgetExists)
         update(data, line); // updates the path
       else {
-        draw(data) // draws the whole SVG widget area
+        draw(data, this.line) // draws the whole SVG widget area
         this.widgetExists = true; // set the flag to notify that svg element is put in place
       }
     }
