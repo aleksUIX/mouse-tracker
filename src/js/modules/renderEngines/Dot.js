@@ -1,6 +1,9 @@
 class Dot {
   constructor() {
-
+    this.dataSeries = null;
+    // TODO: find a way to bind parent automatically
+    this.render = this.render.bind(this);
+    this.define = this.define.bind(this);
   }
 
 
