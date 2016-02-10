@@ -33,8 +33,8 @@ class Line {
         stroke: 'black'
       })
       .attr("class", "line")
-      .attr("d", this.dataSeries)
+      .attr("d", this.dataSeries);
   }
 }
 
-export default Line
+export default Line;
