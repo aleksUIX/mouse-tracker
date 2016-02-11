@@ -20,8 +20,6 @@ class Bar {
   }
 
   render(data, svg) {
-    // TODO: bar is rendering incorrectly,
-    // needs a fix here
     var x = this.dataSeries.x,
       y = this.dataSeries.y;
 
