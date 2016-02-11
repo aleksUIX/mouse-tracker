@@ -14,16 +14,19 @@ class Bar {
       y: y
     }
 
+
     this.dataSeries = dataSeries;
     return dataSeries;
   }
 
   render(data, svg) {
     // TODO: bar is rendering incorrectly,
-    // needs a fix here 
+    // needs a fix here
     var x = this.dataSeries.x,
       y = this.dataSeries.y;
 
+    if (y.range()[0] !== 0)
+      y.range([y.range()[1], y.range()[0]]);
 
     svg.selectAll('.bar')
       .remove();
@@ -35,7 +38,7 @@ class Bar {
       .classed('bar', true)
       .attr({
         x: (d) => { return x(d.time); },
-        y: (d) => { return y.range()[0] - y(d.distance); },
+        y: (d) => { return 0; },
         width: 1, // TODO : come up with a better way to calculate width of the bars
         height: (d) => { return y(d.distance); },
         fill: '#CCCCCC'

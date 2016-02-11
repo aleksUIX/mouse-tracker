@@ -6,7 +6,6 @@ class Dot {
     this.define = this.define.bind(this);
   }
 
-
   define(x, y) {
     var dataSeries = {
       x: x,
