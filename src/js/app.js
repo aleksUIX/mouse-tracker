@@ -13,7 +13,7 @@ export default class App {
 
     const renderTimeLine = new RenderTimeLine('data-timeline', Line);
     const renderTimeBars = new RenderTimeLine('data-timebars', Bar);
-    const renderTimeBars = new RenderTimeLine('data-timedots', Dot);
+    const renderTimeDots = new RenderTimeLine('data-timedots', Dot);
   }
   initEvent() {
   }
