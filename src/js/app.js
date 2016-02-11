@@ -3,6 +3,7 @@ import RenderTimeLine from './modules/RenderTimeLine';
 
 import Line from './modules/renderEngines/Line';
 import Bar from './modules/renderEngines/Bar';
+import Dot from './modules/renderEngines/Dot';
 
 
 export default class App {
@@ -12,6 +13,7 @@ export default class App {
 
     const renderTimeLine = new RenderTimeLine('data-timeline', Line);
     const renderTimeBars = new RenderTimeLine('data-timebars', Bar);
+    const renderTimeBars = new RenderTimeLine('data-timedots', Dot);
   }
   initEvent() {
   }
