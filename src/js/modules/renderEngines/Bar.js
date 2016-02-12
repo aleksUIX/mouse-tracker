@@ -35,10 +35,16 @@ class Bar {
       .append('rect')
       .classed('bar', true)
       .attr({
-        x: (d) => { return x(d.time); },
-        y: (d) => { return y.range()[1] - y(d.distance) },
+        x: (d) => {
+          return x(d.time);
+        },
+        y: (d) => {
+          return y.range()[1] - y(d.distance)
+        },
         width: 1, // TODO : come up with a better way to calculate width of the bars
-        height: (d) => { return y(d.distance); },
+        height: (d) => {
+          return y(d.distance);
+        },
         fill: '#CCCCCC'
       });
   }

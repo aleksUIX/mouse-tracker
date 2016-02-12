@@ -12,6 +12,7 @@ class Dot {
       y: y
     }
 
+
     this.dataSeries = dataSeries;
     return dataSeries;
   }
@@ -20,26 +21,26 @@ class Dot {
     var x = this.dataSeries.x,
       y = this.dataSeries.y;
 
+    if (y.range()[0] !== 0)
+      y.range([y.range()[1], y.range()[0]]);
 
-    svg.selectAll('.bar')
+    svg.selectAll('.dot')
       .remove();
 
-    svg.selectAll('rect')
+    svg.selectAll('circle')
       .data(data)
       .enter()
-      .append('rect')
-      .classed('bar', true)
+      .append('circle')
+      .classed('dot', true)
       .attr({
         x: (d) => {
           return x(d.time);
         },
         y: (d) => {
-          return y.range()[0] - y(d.distance);
+          return y.range()[1] - y(d.distance)
         },
-        width: 1, // TODO : come up with a better way to calculate width of the bars
-        height: (d) => {
-          return y(d.distance);
-        },
+        width: 2,
+        height: 2
         fill: '#CCCCCC'
       });
   }
