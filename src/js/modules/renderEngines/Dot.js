@@ -33,14 +33,13 @@ class Dot {
       .append('circle')
       .classed('dot', true)
       .attr({
-        x: (d) => {
+        cx: (d) => {
           return x(d.time);
         },
-        y: (d) => {
+        cy: (d) => {
           return y.range()[1] - y(d.distance)
         },
-        width: 2,
-        height: 2
+        r: 2,
         fill: '#CCCCCC'
       });
   }
