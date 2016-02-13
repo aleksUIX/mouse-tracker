@@ -22,7 +22,7 @@ class Bar {
   render(data, svg) {
     var x = this.dataSeries.x,
       y = this.dataSeries.y,
-      barWidth = x.range()[1] / data.length;
+      barWidth = 1; //x.range()[1] / data.length;
 
     if (y.range()[0] !== 0)
       y.range([y.range()[1], y.range()[0]]);

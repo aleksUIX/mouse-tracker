@@ -21,9 +21,9 @@ export default class RenderTimeLine {
     // variable declarations and placeholders
     var margin = {
         top: 20,
-        right: 20,
+        right: 25,
         bottom: 30,
-        left: 50
+        left: 25
       },
       width = 350 - margin.left - margin.right,
       height = 150 - margin.top - margin.bottom,
@@ -48,6 +48,7 @@ export default class RenderTimeLine {
       xAxis = d3.svg.axis()
         .scale(x)
         .orient("bottom");
+
       yAxis = d3.svg.axis()
         .scale(y)
         .orient("left");
