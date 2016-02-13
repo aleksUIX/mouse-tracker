@@ -21,7 +21,8 @@ class Bar {
 
   render(data, svg) {
     var x = this.dataSeries.x,
-      y = this.dataSeries.y;
+      y = this.dataSeries.y,
+      barWidth = x.range()[1] / data.length;
 
     if (y.range()[0] !== 0)
       y.range([y.range()[1], y.range()[0]]);
@@ -36,12 +37,12 @@ class Bar {
       .classed('bar', true)
       .attr({
         x: (d) => {
-          return x(d.time);
+          return x(d.time) - (barWidth / 2);
         },
         y: (d) => {
           return y.range()[1] - y(d.distance)
         },
-        width: 1, // TODO : come up with a better way to calculate width of the bars
+        width: barWidth,
         height: (d) => {
           return y(d.distance);
         },
