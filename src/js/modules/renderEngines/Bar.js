@@ -45,7 +45,7 @@ class Bar {
         height: (d) => {
           return y(d.distance);
         },
-        fill: '#CCCCCC'
+        fill: '#666666'
       });
   }
 

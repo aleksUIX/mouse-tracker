@@ -40,7 +40,7 @@ class Dot {
           return y.range()[1] - y(d.distance)
         },
         r: 2,
-        fill: '#CCCCCC'
+        fill: '#666666'
       });
   }
 }
