@@ -1,25 +1,30 @@
 <!doctype html>
 <html>
   <head>
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="dist/main.css" />
-
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
   </head>
   <body>
     <div class="container-fluid">
       <div class="row">
         <div class="col-xs-12">
-          tracking mouse distance
+          <h4>tracking mouse distance</h4>
         </div>
       </div>
         <div class="row">
-          <div class="col-xs-6">
+          <div class="col-xs-4">
+            <h5>movements</h5>
             <ul id="data-list"></ul>
           </div>
-          <div class="col-xs-6">
+          <div class="col-xs-4">
+            <h5>distance</h5>
             <div id="data-timeline"></div>
             <div id="data-timebars"></div>
             <div id="data-timedots"></div>
+          </div>
+          <div class="col-xs-4">
+            <h5>direction</h5>
+            <ul id="data-direction"></ul>
           </div>
         </div>
     </div>
