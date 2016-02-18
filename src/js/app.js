@@ -8,12 +8,12 @@ import Dot from './modules/renderEngines/Dot';
 
 export default class App {
   constructor() {
-    const renderList = new RenderList('data-list');
+    const renderList = new RenderList('widget-list');
     renderList.render();
 
-    const renderTimeLine = new RenderTimeLine('data-timeline', Line);
-    const renderTimeBars = new RenderTimeLine('data-timebars', Bar);
-    const renderTimeDots = new RenderTimeLine('data-timedots', Dot);
+    const renderTimeLine = new RenderTimeLine('widget-timeline', Line);
+    const renderTimeBars = new RenderTimeLine('widget-timebars', Bar);
+    const renderTimeDots = new RenderTimeLine('widget-timedots', Dot);
   }
   initEvent() {
   }
