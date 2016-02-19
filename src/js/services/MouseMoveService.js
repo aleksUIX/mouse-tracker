@@ -23,7 +23,11 @@ class MouseMoveService {
 
     //this.mouseMove = new MouseMove();
     this.mouseMove.registerHandler(function(data) {
-      const direction = calculateDirection(data.coords); // we will probably need a little more, like old coords. Need to expose them from the event handler
+      // we will probably need a little more, like old coords. Need to expose them from the event handler
+      // We also want to calculate the direcition of movement in degrees where 0/360 is top
+      const direction = calculateDirection(data.coords);
+
+
       const distance = calculateDistance(data.coords);
       const newEntry = new MouseMoveModel(distance, new Date());
 
