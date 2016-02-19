@@ -1,10 +1,10 @@
-import DistanceService from '../services/DistanceService';
+import MouseMoveService from '../services/MouseMoveService';
 
 
 export default class RenderList {
   constructor(el) {
 
-    this.distance = DistanceService;
+    this.distance = MouseMoveService;
     this.$el = document.getElementById(el);
     this.distance.registerCallback(this.render.bind(this));
 

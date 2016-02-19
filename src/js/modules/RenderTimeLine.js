@@ -1,6 +1,6 @@
 import d3 from 'd3';
 
-import DistanceService from '../services/DistanceService';
+import MouseMoveService from '../services/MouseMoveService';
 
 
 // This class provides an event and data wrapper
@@ -8,7 +8,7 @@ import DistanceService from '../services/DistanceService';
 export default class RenderTimeLine {
   constructor(el, Type) {
 
-    this.distance = DistanceService;
+    this.distance = MouseMoveService;
     this.$el = document.getElementById(el);
     var seriesRenderer = new Type();
 
