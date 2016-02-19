@@ -1,10 +1,10 @@
 
 
-class Direction {
+class RenderDirection {
   constructor() {
-    
+
   }
 }
 
 
-export default Direction
+export default RenderDirection
