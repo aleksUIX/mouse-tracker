@@ -7,4 +7,4 @@ class RenderDirection {
 }
 
 
-export default RenderDirection
+export default RenderDirection;

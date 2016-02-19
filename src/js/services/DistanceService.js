@@ -1,6 +1,6 @@
 import MouseMove from '../modules/MouseMove';
 import CalculateDistance from '../helpers/CalculateDistance';
-import DistanceModel from '../models/DistanceModel';
+import MouseMoveModel from '../models/MouseMoveModel';
 
 
 class DistanceService {
@@ -21,7 +21,7 @@ class DistanceService {
     //this.mouseMove = new MouseMove();
     this.mouseMove.registerHandler(function(data) {
       const distance = calculate(data.coords);
-      const newEntry = new DistanceModel(distance, new Date());
+      const newEntry = new MouseMoveModel(distance, new Date());
 
       push(newEntry);
     });
