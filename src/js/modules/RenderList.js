@@ -14,7 +14,8 @@ export default class RenderList {
     let partial = '';
 
     if (data) {
-      data.forEach((item) => {
+      let localData = Array.prototype.slice.call(data);
+      localData.reverse().forEach((item) => {
         const time = item.time;
         const timePartial = `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`;
         partial += `<li>on ${timePartial}, the mouse travelled ${item.distance}cm</li>`;
