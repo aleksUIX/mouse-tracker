@@ -2,11 +2,7 @@
 
 
 class CalculateDirection {
-  constructor() {
-
-  }
-
-  calculate() {
+  calculate(data) {
 
   }
 }
