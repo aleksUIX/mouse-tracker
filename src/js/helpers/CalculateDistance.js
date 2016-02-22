@@ -18,9 +18,9 @@ export default class CalculateDistance {
     const yDistance = yMax - yMin;
 
     const pixelDistance = Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
-    const cmDistance = Math.round(pixToCm * pixelDistance);
+    const cmDistance = pixToCm * pixelDistance;
 
     return cmDistance;
   }
-  
+
 }
