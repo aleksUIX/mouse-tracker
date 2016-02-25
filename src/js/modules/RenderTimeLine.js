@@ -8,12 +8,12 @@ import MouseMoveService from '../services/MouseMoveService';
 export default class RenderTimeLine {
   constructor(el, Type) {
 
-    this.distance = MouseMoveService;
+    this.mouseService = MouseMoveService;
     this.$el = document.getElementById(el);
     var seriesRenderer = new Type();
 
     this.render = new this.Render(this.$el, seriesRenderer);
-    this.distance.registerCallback(this.render.bind(this));
+    this.mouseService.registerCallback(this.render.bind(this));
 
   }
 
