@@ -9,6 +9,18 @@ class RenderDirection {
   }
 
   render(data) {
+    let $el = d3.select($el),
+      width = 200,
+      height = 200;
+
+    function draw() {
+      let svg = $el.append('svg')
+        .attr({
+          width: width,
+          height: height
+        });
+    }
+
 
   }
 }
