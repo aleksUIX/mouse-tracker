@@ -23,6 +23,21 @@ class RenderDirection {
           width: width,
           height: height
         });
+
+      svg.append('circle')
+        .attr({
+          cx: 100,
+          cy: 100,
+          r: 80,
+          'stroke-width': '1',
+          stroke: '#000000',
+          fill: 'none'
+        });
+
+      svg.append('line')
+        .attr({
+
+        });
     }
 
     draw();
