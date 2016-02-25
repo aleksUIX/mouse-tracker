@@ -3,7 +3,6 @@ import MouseMoveService from '../services/MouseMoveService';
 
 class RenderDirection {
   constructor(el) {
-
     this.direction = MouseMoveService;
     this.$el = document.getElementById(el);
   }
@@ -21,7 +20,7 @@ class RenderDirection {
         });
     }
 
-
+    console.log(data);
   }
 }
 
