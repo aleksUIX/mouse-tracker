@@ -34,11 +34,20 @@ class RenderDirection {
           fill: 'none'
         });
 
+      svg.append('circle')
+        .attr({
+          cx: 10,
+          cy: 10,
+          r: 10,
+          stroke: '#000000'
+        });
+
+      console.log(data[data.length-1]);
+
     }
 
-    draw();
-
-    console.log(data);
+    if (data && data.length)
+      draw();
   }
 }
 
