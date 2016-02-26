@@ -29,7 +29,7 @@ class MouseMoveService {
 
 
       const distance = calculateDistance(data.coords);
-      const newEntry = new MouseMoveModel(Math.round(distance *  100) / 100, new Date());
+      const newEntry = new MouseMoveModel(Math.round(distance *  100) / 100, new Date(), direction);
 
       push(newEntry);
     });
