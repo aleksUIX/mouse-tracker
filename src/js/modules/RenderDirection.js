@@ -34,10 +34,6 @@ class RenderDirection {
           fill: 'none'
         });
 
-      svg.append('line')
-        .attr({
-
-        });
     }
 
     draw();
