@@ -35,14 +35,15 @@ class RenderDirection {
         });
 
       svg.append('circle')
+        .datum(data[data.length-1])
         .attr({
-          cx: 10,
-          cy: 10,
+          cx: (d) => { return 100 + 80 * cos(d.direction); },
+          cy: (d) => { return 100 + 80 * sin(d.direction); },
           r: 10,
           stroke: '#000000'
         });
 
-      console.log(data[data.length-1]);
+      console.log();
 
     }
 
