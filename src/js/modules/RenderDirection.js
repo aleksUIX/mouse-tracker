@@ -39,11 +39,9 @@ class RenderDirection {
         .attr({
           cx: (d) => { return 100 + 80 * Math.cos(d.direction); },
           cy: (d) => { return 100 + 80 * Math.sin(d.direction); },
-          r: 10,
+          r: 5,
           stroke: '#000000'
         });
-
-      console.log();
 
     }
 
