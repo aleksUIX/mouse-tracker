@@ -46,6 +46,7 @@ class RenderDirection {
           stroke: '#000000'
         });
 
+      // TODO: add a path from the centre of the circle to the indicator
       // path from middle of the chart to the indicator circle
       // svg.append('line')
       //   .datum(dataPoint);
