@@ -16,8 +16,10 @@ class RenderDirection {
       height = 200;
 
     function draw() {
+      // clean
       $el.selectAll('svg').remove();
 
+      let dataPoint = data[data.length-1]
       let svg = $el.append('svg')
         .attr({
           width: width,
@@ -34,14 +36,19 @@ class RenderDirection {
           fill: 'none'
         });
 
+      // indicator circle that shows the direction
       svg.append('circle')
-        .datum(data[data.length-1])
+        .datum(dataPoint)
         .attr({
           cx: (d) => { return 100 + 80 * Math.cos(d.direction); },
           cy: (d) => { return 100 + 80 * Math.sin(d.direction); },
           r: 5,
           stroke: '#000000'
         });
+
+      // path from middle of the chart to the indicator circle
+      // svg.append('line')
+      //   .datum(dataPoint);
 
     }
 
