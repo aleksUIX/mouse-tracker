@@ -13,7 +13,10 @@ class RenderDirection {
   render(data) {
     let $el = d3.select(this.$el),
       width = 200,
-      height = 200;
+      height = 200,
+      cx = 100,
+      cy = 100,
+      radius = 80;
 
     function draw() {
       // clean
@@ -28,9 +31,9 @@ class RenderDirection {
 
       svg.append('circle')
         .attr({
-          cx: 100,
-          cy: 100,
-          r: 80,
+          cx: cx,
+          cy: cy,
+          r: radius,
           'stroke-width': '1',
           stroke: '#000000',
           fill: 'none'
@@ -40,8 +43,8 @@ class RenderDirection {
       svg.append('circle')
         .datum(dataPoint)
         .attr({
-          cx: (d) => { return 100 + 80 * Math.cos(d.direction); },
-          cy: (d) => { return 100 + 80 * Math.sin(d.direction); },
+          cx: (d) => { return cx + radius * Math.cos(d.direction); },
+          cy: (d) => { return cy + radius * Math.sin(d.direction); },
           r: 5,
           stroke: '#000000'
         });
@@ -50,10 +53,10 @@ class RenderDirection {
       svg.append('line')
         .datum(dataPoint)
         .attr({
-          x1: 100,
-          y1: 100,
-          x2: (d) => { return 100 + 80 * Math.cos(d.direction); },
-          y2: (d) => { return 100 + 80 * Math.sin(d.direction); },
+          x1: cx,
+          y1: cy,
+          x2: (d) => { return cx + radius * Math.cos(d.direction); },
+          y2: (d) => { return cy + radius * Math.sin(d.direction); },
           'stroke-width': 1,
           stroke: '#000000'
         });
