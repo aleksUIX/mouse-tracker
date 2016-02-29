@@ -47,8 +47,16 @@ class RenderDirection {
         });
 
       // path from middle of the chart to the indicator circle
-      // svg.append('line')
-      //   .datum(dataPoint);
+      svg.append('line')
+        .datum(dataPoint)
+        .attr({
+          x1: 100,
+          y1: 100,
+          x2: (d) => { return 100 + 80 * Math.cos(d.direction); },
+          y2: (d) => { return 100 + 80 * Math.sin(d.direction); },
+          'stroke-width': 1,
+          stroke: '#000000'
+        });
 
     }
 
