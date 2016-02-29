@@ -39,12 +39,20 @@ class RenderDirection {
           fill: 'none'
         });
 
+      var calcCx = (d) => {
+         return cx + radius * Math.cos(d.direction);
+      }
+
+      var calcCy = (d) => {
+         return cy + radius * Math.sin(d.direction);
+      }
+
       // indicator circle that shows the direction
       svg.append('circle')
         .datum(dataPoint)
         .attr({
-          cx: (d) => { return cx + radius * Math.cos(d.direction); },
-          cy: (d) => { return cy + radius * Math.sin(d.direction); },
+          cx: calcCx,
+          cy: calcCy,
           r: 5,
           stroke: '#000000'
         });
@@ -55,8 +63,8 @@ class RenderDirection {
         .attr({
           x1: cx,
           y1: cy,
-          x2: (d) => { return cx + radius * Math.cos(d.direction); },
-          y2: (d) => { return cy + radius * Math.sin(d.direction); },
+          x2: calcCx,
+          y2: calcCy,
           'stroke-width': 1,
           stroke: '#000000'
         });
