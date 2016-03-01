@@ -49,20 +49,25 @@ class RenderDirection {
 
       // indicator circle that shows the direction
       // TODO: swap circle for an arrow
-      svg.append('circle')
-        .datum(dataPoint)
-        .attr({
-          cx: calcCx,
-          cy: calcCy,
-          r: 5,
-          stroke: '#000000'
-        });
+      // svg.append('circle')
+      //   .datum(dataPoint)
+      //   .attr({
+      //     r: 5,
+      //     stroke: '#000000'
+      //   });
 
       // arrow path code
-      svg.append('path')
+      svg.append('g')
+        .datum(dataPoint)
+        .attr({
+          transform: '(0,0)'
+        })
+        .append('path')
         .attr({
           d: "M 100 100 L 90 95 L 110 100 L 90 105 z",
-          fill: "#000000"
+          fill: "#000000",
+          x: calcCx,
+          y: calcCy
         });
 
       // path from middle of the chart to the indicator circle
