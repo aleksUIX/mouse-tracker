@@ -60,14 +60,14 @@ class RenderDirection {
       svg.append('g')
         .datum(dataPoint)
         .attr({
-          transform: '(0,0)'
+          transform: function(d) {
+            return '(' + calcCx(d) +', ' + calcCy(d) + ')'
+          }
         })
         .append('path')
         .attr({
           d: "M 100 100 L 90 95 L 110 100 L 90 105 z",
-          fill: "#000000",
-          x: calcCx,
-          y: calcCy
+          fill: "#000000"
         });
 
       // path from middle of the chart to the indicator circle
