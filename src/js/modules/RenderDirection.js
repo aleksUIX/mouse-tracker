@@ -13,7 +13,10 @@ class RenderDirection {
   render(data) {
     let $el = d3.select(this.$el),
       width = 200,
-      height = 200;
+      height = 200,
+      cx = 100,
+      cy = 100,
+      radius = 80;
 
     function draw() {
       // clean
@@ -28,28 +31,57 @@ class RenderDirection {
 
       svg.append('circle')
         .attr({
-          cx: 100,
-          cy: 100,
-          r: 80,
+          cx: cx,
+          cy: cy,
+          r: radius,
           'stroke-width': '1',
           stroke: '#000000',
           fill: 'none'
         });
 
+      var calcCx = (d) => {
+         return cx + radius * Math.cos(d.direction);
+      }
+
+      var calcCy = (d) => {
+         return cy + radius * Math.sin(d.direction);
+      }
+
       // indicator circle that shows the direction
-      svg.append('circle')
+      // TODO: swap circle for an arrow
+      // svg.append('circle')
+      //   .datum(dataPoint)
+      //   .attr({
+      //     r: 5,
+      //     stroke: '#000000'
+      //   });
+
+      // arrow path code
+      svg.append('g')
         .datum(dataPoint)
         .attr({
-          cx: (d) => { return 100 + 80 * Math.cos(d.direction); },
-          cy: (d) => { return 100 + 80 * Math.sin(d.direction); },
-          r: 5,
-          stroke: '#000000'
+          transform: function(d) {
+            return '(' + calcCx(d) +', ' + calcCy(d) + ')'
+          }
+        })
+        .append('path')
+        .attr({
+          d: "M 100 100 L 90 95 L 110 100 L 90 105 z",
+          fill: "#000000"
         });
 
       // TODO: add a path from the centre of the circle to the indicator
       // path from middle of the chart to the indicator circle
-      // svg.append('line')
-      //   .datum(dataPoint);
+      svg.append('line')
+        .datum(dataPoint)
+        .attr({
+          x1: cx,
+          y1: cy,
+          x2: calcCx,
+          y2: calcCy,
+          'stroke-width': 1,
+          stroke: '#000000'
+        });
 
     }
 
