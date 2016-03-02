@@ -67,7 +67,7 @@ class RenderDirection {
         .append('path')
         .datum(dataPoint)
         .attr({
-          d: "M 0 0 L -10 -5 L 10 0 L -10 5 z",
+          d: "M 0 0 L -5 -7 L 7 0 L -5 7 z",
           fill: "#000000",
           transform: function(d) {
             return 'rotate(' + (d.direction * (180/Math.PI)) + ')'
