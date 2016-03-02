@@ -61,7 +61,7 @@ class RenderDirection {
         .datum(dataPoint)
         .attr({
           transform: function(d) {
-            return '(' + calcCx(d) +', ' + calcCy(d) + ')'
+            return 'translate(' + (calcCx(d) - width/2) +', ' + (calcCy(d) - height/2) + ')'
           }
         })
         .append('path')
