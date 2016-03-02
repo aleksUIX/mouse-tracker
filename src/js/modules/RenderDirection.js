@@ -61,13 +61,17 @@ class RenderDirection {
         .datum(dataPoint)
         .attr({
           transform: function(d) {
-            return 'translate(' + (calcCx(d) - width/2) +', ' + (calcCy(d) - height/2) + ')'
+            return 'translate(' + (calcCx(d)) +', ' + (calcCy(d)) + ')'
           }
         })
         .append('path')
+        .datum(dataPoint)
         .attr({
-          d: "M 100 100 L 90 95 L 110 100 L 90 105 z",
-          fill: "#000000"
+          d: "M 0 0 L -10 -5 L 10 0 L -10 5 z",
+          fill: "#000000",
+          transform: function(d) {
+            return 'rotate(' + (d.direction * (180/Math.PI)) + ')'
+          }
         });
 
       // TODO: add a path from the centre of the circle to the indicator
