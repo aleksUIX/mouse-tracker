@@ -1,6 +1,6 @@
 // Square heatmap engine
 
 
-class SquareMap {
+export default class SquareMap {
 
 }

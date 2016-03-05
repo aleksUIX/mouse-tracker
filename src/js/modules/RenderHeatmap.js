@@ -10,7 +10,7 @@ import SphereMap from 'SphereMap';
 import SquareMap from 'SquareMap';
 
 
-class RenderHeatmap {
+export default class RenderHeatmap {
   constructor() {
     this.sphereMap = new SphereMap();
     this.squareMap = new SquareMap();

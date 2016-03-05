@@ -1,6 +1,6 @@
 // Spherical heatmap engine
 
 
-class SphereMap {
+export default class SphereMap {
 
 }
