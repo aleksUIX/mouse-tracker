@@ -10,6 +10,8 @@ var mocha = require('gulp-mocha');
 var util = require('gulp-util');
 var uglifyify = require('uglifyify');
 var sass = require('gulp-sass');
+var open = require('gulp-open');
+var platform = require('platform');
 
 
 gulp.task('test', function () {
@@ -67,6 +69,19 @@ gulp.task('connect', function() {
   });
 });
 
+gulp.task('open', function(){
+  var browser = platform.os.toString().toLowerCase().indexOf('linux') > -1  ? 'google-chrome' : (
+  platform.os.toLowerCase().toString().indexOf('os') > -1 ? 'google chrome' : (
+  platform.os.toLowerCase().toString().indexOf('win32') > -1 ? 'chrome' : 'firefox'));
+
+  var options = {
+    uri: 'localhost:3000',
+    app: browser
+  };
+  gulp.src('./index.html')
+  .pipe(open(options));
+});
+
 gulp.task('sass', function() {
   gulp.src('./src/sass/main.scss')
     .pipe(sass().on('error', sass.logError))
@@ -79,4 +94,4 @@ gulp.task('sass-watch', function() {
 });
 
 
-gulp.task('default', ['watch', 'sass-watch', 'sass', 'connect']);
+gulp.task('default', ['watch', 'sass-watch', 'sass', 'connect', 'open']);
