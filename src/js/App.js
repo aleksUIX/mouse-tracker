@@ -1,6 +1,7 @@
 import RenderList from './modules/RenderList';
 import RenderTimeLine from './modules/RenderTimeLine';
 import RenderDirection from './modules/RenderDirection';
+import RenderHeatmap from './modules/RenderHeatmap';
 
 import Line from './modules/renderEngines/Line';
 import Bar from './modules/renderEngines/Bar';
@@ -17,6 +18,10 @@ export default class App {
     const renderTimeDots = new RenderTimeLine('widget-timedots', Dot);
 
     const renderDirection = new RenderDirection('widget-direction');
+
+    const renderHeatMapSquare = new RenderHeatmap('square');
+    const renderHeatMapSphere = new RenderHeatmap('sphere');
+
     renderDirection.render();
   }
   initEvent() {
