@@ -11,7 +11,7 @@ import SquareMap from './mapEngines/SquareMap';
 
 
 export default class RenderHeatmap {
-  constructor(mapType) {
+  constructor(mapType, target) {
     console.log(mapType);
     switch (mapType) {
       case "sphere":
@@ -26,6 +26,22 @@ export default class RenderHeatmap {
     }
 
     console.log('map ' + this.map);
+  }
+
+
+  render() {
+    var width = 300,
+      height = 200,
+      svg,
+      series;
+
+    function draw() {
+      svg = d3.select(target)
+        .append('svg');
+
+
+    }
+
   }
 
 
