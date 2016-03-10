@@ -94,4 +94,4 @@ gulp.task('sass-watch', function() {
 });
 
 
-gulp.task('default', ['watch', 'sass-watch', 'sass', 'connect', 'open']);
+gulp.task('default', ['watch', 'sass-watch', 'sass', 'connect']);
