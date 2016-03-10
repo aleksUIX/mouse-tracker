@@ -12,6 +12,8 @@ import SquareMap from './mapEngines/SquareMap';
 
 export default class RenderHeatmap {
   constructor(target, mapType) {
+    this.target = target;
+
     switch (mapType) {
       case "sphere":
         this.map = new SphereMap();
@@ -29,15 +31,37 @@ export default class RenderHeatmap {
   }
 
   render() {
-    var width = 300,
-      height = 200,
+    var target = d3.select(this.target),
+      dimensions = target.node().getBBox(),
+      width = dimensions.width,
+      height = dimensions.height,
       svg,
       series,
+      x,
+      y,
+      xAxis,
+      yAxis,
       map = this.map;
 
     function draw() {
       svg = d3.select(target)
-        .append('svg');
+        .append('svg')
+        append('g')
+        .call(map);
+
+        x = d3.time.scale()
+          .range([0, width]);
+
+        y = d3.scale.linear()
+          .range([height, 0]);
+
+        xAxis = d3.svg.axis()
+          .scale(x)
+          .orient("bottom");
+
+        yAxis = d3.svg.axis()
+          .scale(y)
+          .orient("left");
 
 
     }
