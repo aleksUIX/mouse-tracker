@@ -8,6 +8,7 @@
 
 import SphereMap from './mapEngines/SphereMap';
 import SquareMap from './mapEngines/SquareMap';
+import d3 from 'd3';
 
 
 export default class RenderHeatmap {
@@ -31,10 +32,12 @@ export default class RenderHeatmap {
   }
 
   render() {
-    var target = d3.select(this.target),
-      dimensions = target.node().getBBox(),
-      width = dimensions.width,
-      height = dimensions.height,
+    // var target = d3.select('#' + this.target),
+    //   dimensions = target.node().getBBox(),
+
+    //TODO: width and height should be taken after container node
+    var width = 300,
+      height = 200,
       svg,
       series,
       x,

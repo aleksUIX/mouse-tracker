@@ -19,6 +19,7 @@ export default class RenderTimeLine {
 
   Render($el, seriesRenderer) {
     // variable declarations and placeholders
+    //TODO: width and height should be taken after container node
     var margin = {
         top: 20,
         right: 25,
