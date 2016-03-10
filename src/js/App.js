@@ -19,8 +19,8 @@ export default class App {
 
     const renderDirection = new RenderDirection('widget-direction');
 
-    const renderHeatMapSquare = new RenderHeatmap('square');
-    const renderHeatMapSphere = new RenderHeatmap('sphere');
+    const renderHeatMapSquare = new RenderHeatmap('widget-sphere-map', 'sphere');
+    const renderHeatMapSphere = new RenderHeatmap('widget-square-map', 'square');
 
     renderDirection.render();
   }
