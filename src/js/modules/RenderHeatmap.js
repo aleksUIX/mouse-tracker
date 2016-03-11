@@ -14,7 +14,6 @@ import MouseMoveService from '../services/MouseMoveService';
 
 export default class RenderHeatmap {
   constructor(target, mapType) {
-    this.target = target;
 
     switch (mapType) {
       case "sphere":
@@ -34,12 +33,12 @@ export default class RenderHeatmap {
 
   }
 
-  render() {
+  Render(target, renderer) {
     // var target = d3.select('#' + this.target),
     //   dimensions = target.node().getBBox(),
 
     //TODO: width and height should be taken after container node
-    var target = document.getElementById(this.target),
+    var target = document.getElementById(target),
       width = target.offsetWidth,
       height = target.offsetHeight,
       svg,
@@ -48,6 +47,7 @@ export default class RenderHeatmap {
       y,
       xAxis,
       yAxis,
+      exists,
       map = this.map;
 
     function draw() {
@@ -75,6 +75,17 @@ export default class RenderHeatmap {
           .orient("left");
 
 
+    }
+
+
+    return function(data) {
+      // check if widget is in the DOM
+      if (exists) {
+        // update(data); // updates the path
+      } else {
+        // exists = true; // set the flag to notify that svg element is put in place
+        // draw(data) // draws the whole SVG widget area
+      }
     }
 
   }
