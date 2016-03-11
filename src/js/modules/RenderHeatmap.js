@@ -36,8 +36,9 @@ export default class RenderHeatmap {
     //   dimensions = target.node().getBBox(),
 
     //TODO: width and height should be taken after container node
-    var width = 300,
-      height = 200,
+    var target = document.getElementById(this.target),
+      width = target.offsetWidth,
+      height = target.offsetHeight,
       svg,
       series,
       x,
