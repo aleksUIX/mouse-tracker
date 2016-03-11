@@ -50,7 +50,7 @@ export default class RenderHeatmap {
       exists,
       map = this.map;
 
-    function draw() {
+    function draw(data) {
       svg = d3.select(target)
         .append('svg')
         .attr({
@@ -74,6 +74,10 @@ export default class RenderHeatmap {
           .scale(y)
           .orient("left");
 
+    }
+
+
+    function update(data) {
 
     }
 
