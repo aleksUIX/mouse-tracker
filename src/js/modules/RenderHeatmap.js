@@ -5,10 +5,11 @@
 
 // Feature: heatmap should allow different types of rendering
 // Take into account: square+area, square+colour, spherical+area, spherical+colour, spherical+colour/area, voronoi, voronoi+color; one-dimensional gradient: top-bottom, left-right
+import d3 from 'd3';
 
 import SphereMap from './mapEngines/SphereMap';
 import SquareMap from './mapEngines/SquareMap';
-import d3 from 'd3';
+import MouseMoveService from '../services/MouseMoveService';
 
 
 export default class RenderHeatmap {
@@ -17,17 +18,19 @@ export default class RenderHeatmap {
 
     switch (mapType) {
       case "sphere":
-        this.map = new SphereMap();
+        this.mapRenderer = new SphereMap();
         break;
       case "square":
-        this.map = new SquareMap();
+        this.mapRenderer = new SquareMap();
         break;
       default:
-        this.map = new SphereMap();
+        this.mapRenderer = new SphereMap();
         break;
     }
 
-    this.render()
+    this.mouseService = MouseMoveService;
+    this.render = new this.Render(target, this.mapRenderer);
+    this.mouseService.registerCallback(this.render.bind(this));
 
   }
 
@@ -50,7 +53,11 @@ export default class RenderHeatmap {
     function draw() {
       svg = d3.select(target)
         .append('svg')
-        append('g')
+        .attr({
+          height: height,
+          width: width
+        })
+        .append('g')
         .call(map);
 
         x = d3.time.scale()
