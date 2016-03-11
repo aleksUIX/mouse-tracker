@@ -27,9 +27,14 @@ class MouseMoveService {
       // We also want to calculate the direcition of movement in degrees where 0/360 is top
       const direction = calculateDirection(data.coords);
 
-
       const distance = calculateDistance(data.coords);
-      const newEntry = new MouseMoveModel(Math.round(distance *  100) / 100, new Date(), direction);
+      const newEntry = new MouseMoveModel(
+        Math.round(distance *  100) / 100,
+        new Date(),
+        direction,
+        data.coords.end[0],
+        data.coords.end[1]
+      );
 
       push(newEntry);
     });
