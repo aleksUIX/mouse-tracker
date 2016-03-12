@@ -41,6 +41,8 @@ export default class RenderHeatmap {
     var target = document.getElementById(target),
       width = target.offsetWidth,
       height = target.offsetHeight,
+      windowWidth = window.innerWidth,
+      windowHeight = window.innerHeight,
       svg,
       series,
       x,
@@ -51,6 +53,7 @@ export default class RenderHeatmap {
       map = this.map;
 
     function draw(data) {
+      console.log(data);
       svg = d3.select(target)
         .append('svg')
         .attr({
@@ -58,13 +61,15 @@ export default class RenderHeatmap {
           width: width
         })
         .append('g')
-        .call(map);
+        // .call(map);
 
         x = d3.time.scale()
-          .range([0, width]);
+          .range([0, width])
+          .domain([0, windowWidth]);
 
         y = d3.scale.linear()
-          .range([height, 0]);
+          .range([0, height])
+          .domain([0, windowHeight]);
 
         xAxis = d3.svg.axis()
           .scale(x)
@@ -88,7 +93,7 @@ export default class RenderHeatmap {
         // update(data); // updates the path
       } else {
         // exists = true; // set the flag to notify that svg element is put in place
-        // draw(data) // draws the whole SVG widget area
+        draw(data) // draws the whole SVG widget area
       }
     }
 
