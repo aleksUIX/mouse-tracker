@@ -53,7 +53,6 @@ export default class RenderHeatmap {
       map = this.map;
 
     function draw(data) {
-      console.log(data);
       svg = d3.select(target)
         .append('svg')
         .attr({
@@ -79,18 +78,39 @@ export default class RenderHeatmap {
           .scale(y)
           .orient("left");
 
-    }
+        series = svg.selectAll('circle')
+          .data(data)
+          .enter()
+          .append('circle')
+          .attr({
+            cx: (d) => { return x(d.x); },
+            cy: (d) => { return y(d.y); },
+            r: '2',
+            'stroke-width': '1',
+            stroke: '#000000',
+          });
 
+      exists = true;
+    }
 
     function update(data) {
-
+      series = svg.selectAll('circle')
+        .data(data)
+        .enter()
+        .append('circle')
+        .attr({
+          cx: (d) => { return x(d.x); },
+          cy: (d) => { return y(d.y); },
+          r: '2',
+          'stroke-width': '1',
+          stroke: '#000000',
+        });
     }
-
 
     return function(data) {
       // check if widget is in the DOM
       if (exists) {
-        // update(data); // updates the path
+        update(data); // updates the path
       } else {
         // exists = true; // set the flag to notify that svg element is put in place
         draw(data) // draws the whole SVG widget area
