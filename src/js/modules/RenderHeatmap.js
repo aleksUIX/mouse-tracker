@@ -62,36 +62,42 @@ export default class RenderHeatmap {
         .append('g')
         // .call(map);
 
-        x = d3.time.scale()
-          .range([0, width])
-          .domain([0, windowWidth]);
+      defineGradient(svg);
 
-        y = d3.scale.linear()
-          .range([0, height])
-          .domain([0, windowHeight]);
+      x = d3.time.scale()
+        .range([0, width])
+        .domain([0, windowWidth]);
 
-        xAxis = d3.svg.axis()
-          .scale(x)
-          .orient("bottom");
+      y = d3.scale.linear()
+        .range([0, height])
+        .domain([0, windowHeight]);
 
-        yAxis = d3.svg.axis()
-          .scale(y)
-          .orient("left");
+      xAxis = d3.svg.axis()
+        .scale(x)
+        .orient("bottom");
 
-        series = svg.selectAll('circle')
-          .data(data)
-          .enter()
-          .append('circle')
-          .attr({
-            cx: (d) => { return x(d.x); },
-            cy: (d) => { return y(d.y); },
-            r: '2',
-            'stroke-width': '1',
-            stroke: '#000000',
-          });
+      yAxis = d3.svg.axis()
+        .scale(y)
+        .orient("left");
+
+      series = svg.selectAll('circle')
+        .data(data)
+        .enter()
+        .append('circle')
+        .attr({
+          cx: (d) => {
+            return x(d.x);
+          },
+          cy: (d) => {
+            return y(d.y);
+          },
+          r: '10',
+          fill: "url(#sphere-gradient)"
+        });
 
       exists = true;
     }
+
 
     function update(data) {
       series = svg.selectAll('circle')
@@ -99,11 +105,47 @@ export default class RenderHeatmap {
         .enter()
         .append('circle')
         .attr({
-          cx: (d) => { return x(d.x); },
-          cy: (d) => { return y(d.y); },
+          cx: (d) => {
+            return x(d.x);
+          },
+          cy: (d) => {
+            return y(d.y);
+          },
           r: '2',
           'stroke-width': '1',
           stroke: '#000000',
+        });
+    }
+
+
+    function defineGradient(svg) {
+      var gradient = svg.append('defs')
+        .append('radialGradient')
+        .attr({
+          id: 'sphere-gradient',
+          cx: '50%',
+          cy: '50%',
+          r: '50%',
+          fx: '50%',
+          fy: '50%'
+        });
+
+      gradient.append('stop')
+        .attr({
+          offset: '0%'
+        })
+        .style({
+          'stop-color': 'rgb(0, 0, 0)',
+          'stop-opacity': 0
+        });
+
+      gradient.append('stop')
+        .attr({
+          offset: '100%'
+        })
+        .style({
+          'stop-color': 'rgb(255, 255, 255)',
+          'stop-opacity': 1
         });
     }
 
