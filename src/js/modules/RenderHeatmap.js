@@ -91,7 +91,7 @@ export default class RenderHeatmap {
           cy: (d) => {
             return y(d.y);
           },
-          r: '10',
+          r: '20',
           fill: "url(#sphere-gradient)"
         });
 
@@ -111,9 +111,8 @@ export default class RenderHeatmap {
           cy: (d) => {
             return y(d.y);
           },
-          r: '2',
-          'stroke-width': '1',
-          stroke: '#000000',
+          r: '20',
+          fill: "url(#sphere-gradient)"
         });
     }
 
@@ -125,7 +124,7 @@ export default class RenderHeatmap {
           id: 'sphere-gradient',
           cx: '50%',
           cy: '50%',
-          r: '50%',
+          r: '75%',
           fx: '50%',
           fy: '50%'
         });
@@ -135,17 +134,17 @@ export default class RenderHeatmap {
           offset: '0%'
         })
         .style({
-          'stop-color': 'rgb(0, 0, 0)',
-          'stop-opacity': 0
+          'stop-color': 'rgb(255, 191, 0)',
+          'stop-opacity': 0.4
         });
 
       gradient.append('stop')
         .attr({
-          offset: '100%'
+          offset: '90%'
         })
         .style({
-          'stop-color': 'rgb(255, 255, 255)',
-          'stop-opacity': 1
+          'stop-color': 'rgb(255, 191, 0)',
+          'stop-opacity': 0
         });
     }
 
