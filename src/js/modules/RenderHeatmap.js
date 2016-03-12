@@ -80,20 +80,7 @@ export default class RenderHeatmap {
         .scale(y)
         .orient("left");
 
-      series = svg.selectAll('circle')
-        .data(data)
-        .enter()
-        .append('circle')
-        .attr({
-          cx: (d) => {
-            return x(d.x);
-          },
-          cy: (d) => {
-            return y(d.y);
-          },
-          r: '20',
-          fill: "url(#sphere-gradient)"
-        });
+      update(data);
 
       exists = true;
     }
