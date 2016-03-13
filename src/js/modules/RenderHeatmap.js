@@ -101,7 +101,7 @@ export default class RenderHeatmap {
           cy: (d) => {
             return y(d.y);
           },
-          r: '20',
+          r: '10',
           fill: "url(#sphere-gradient)"
         });
     }
