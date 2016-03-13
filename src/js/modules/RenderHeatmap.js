@@ -52,6 +52,7 @@ export default class RenderHeatmap {
       exists,
       map = this.map;
 
+
     function draw(data) {
       svg = d3.select(target)
         .append('svg')
@@ -61,6 +62,17 @@ export default class RenderHeatmap {
         })
         .append('g')
         // .call(map);
+
+      svg.append('rect')
+        .attr({
+          x: 0,
+          y: 0,
+          width: width,
+          height: height,
+          fill: 'none',
+          'stroke-width': 1,
+          stroke: '#000000'
+        });
 
       defineGradient(svg);
 
@@ -72,16 +84,7 @@ export default class RenderHeatmap {
         .range([0, height])
         .domain([0, windowHeight]);
 
-      xAxis = d3.svg.axis()
-        .scale(x)
-        .orient("bottom");
-
-      yAxis = d3.svg.axis()
-        .scale(y)
-        .orient("left");
-
       update(data);
-
       exists = true;
     }
 
