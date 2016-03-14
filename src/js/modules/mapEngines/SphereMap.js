@@ -3,25 +3,9 @@
 
 export default class SphereMap {
   constructor() {
-    this.update = function(data) {
-      series = svg.selectAll('circle')
-        .data(data)
-        .enter()
-        .append('circle')
-        .attr({
-          cx: (d) => {
-            return x(d.x);
-          },
-          cy: (d) => {
-            return y(d.y);
-          },
-          r: '10',
-          fill: "url(#sphere-gradient)"
-        });
-    }
+    let gradientIsDefined = false;
 
-
-    this.defineGradient = function(svg) {
+    function defineGradient(svg) {
       var gradient = svg.append('defs')
         .append('radialGradient')
         .attr({
@@ -51,5 +35,32 @@ export default class SphereMap {
           'stop-opacity': 0
         });
     }
+
+    this.Update = function(svg) {
+      var svg = svg;
+      return function(data, x, y, series) {
+        if (!gradientIsDefined) {
+          defineGradient(svg);
+          gradientIsDefined = true;
+        }
+
+        series = svg.selectAll('circle')
+          .data(data)
+          .enter()
+          .append('circle')
+          .attr({
+            cx: (d) => {
+              return x(d.x);
+            },
+            cy: (d) => {
+              return y(d.y);
+            },
+            r: '10',
+            fill: "url(#sphere-gradient)"
+          });
+      }
+    }
+
+
   }
 }

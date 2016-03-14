@@ -50,8 +50,7 @@ export default class RenderHeatmap {
       xAxis,
       yAxis,
       exists,
-      map = this.map;
-
+      update;
 
     function draw(data) {
       svg = d3.select(target)
@@ -62,6 +61,8 @@ export default class RenderHeatmap {
         })
         .append('g')
         // .call(map);
+
+      update = new renderer.Update(svg);
 
       svg.append('rect')
         .attr({
@@ -74,8 +75,6 @@ export default class RenderHeatmap {
           stroke: '#000000'
         });
 
-      defineGradient(svg);
-
       x = d3.time.scale()
         .range([0, width])
         .domain([0, windowWidth]);
@@ -84,17 +83,18 @@ export default class RenderHeatmap {
         .range([0, height])
         .domain([0, windowHeight]);
 
-      update(data);
+      update(data, x, y, series);
       exists = true;
     }
 
     return function(data) {
       // check if widget is in the DOM
-      if (exists) {
-        update(data); // updates the path
+      if (data.length > 1) {
+        update(data, x, y, series); // updates the path
       } else {
         // exists = true; // set the flag to notify that svg element is put in place
         draw(data) // draws the whole SVG widget area
+        this.exists = true;
       }
     }
 
