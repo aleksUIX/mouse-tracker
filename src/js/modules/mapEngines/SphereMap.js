@@ -1,5 +1,10 @@
 // Spherical heatmap engine
 
+const GRADIENT_COLOR = 'rgb(255, 191, 0)'
+const START_GRADIENT = 0.4;
+const STOP_GRADIENT = 0;
+const START_GRADIENT_OFFSET = '0%';
+const STOP_GRADIENT_OFFSET = '90%';
 
 export default class SphereMap {
   constructor() {
@@ -19,20 +24,20 @@ export default class SphereMap {
 
       gradient.append('stop')
         .attr({
-          offset: '0%'
+          offset: START_GRADIENT_OFFSET
         })
         .style({
-          'stop-color': 'rgb(255, 191, 0)',
-          'stop-opacity': 0.4
+          'stop-color': GRADIENT_COLOR,
+          'stop-opacity': START_GRADIENT
         });
 
       gradient.append('stop')
         .attr({
-          offset: '90%'
+          offset: STOP_GRADIENT_OFFSET
         })
         .style({
-          'stop-color': 'rgb(255, 191, 0)',
-          'stop-opacity': 0
+          'stop-color': GRADIENT_COLOR,
+          'stop-opacity': STOP_GRADIENT
         });
     }
 
