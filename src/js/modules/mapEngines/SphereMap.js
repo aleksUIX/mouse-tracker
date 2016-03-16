@@ -8,6 +8,32 @@ const STOP_GRADIENT_OFFSET = '90%';
 
 export default class SphereMap {
   constructor() {
+  }
+
+  Update(svg) {
+    var svg = svg;
+    return function(data, x, y, series) {
+      if (!gradientIsDefined) {
+        defineGradient(svg);
+        gradientIsDefined = true;
+      }
+
+      series = svg.selectAll('circle')
+        .data(data)
+        .enter()
+        .append('circle')
+        .attr({
+          cx: (d) => {
+            return x(d.x);
+          },
+          cy: (d) => {
+            return y(d.y);
+          },
+          r: '10',
+          fill: "url(#sphere-gradient)"
+        });
+    }
+
     let gradientIsDefined = false;
 
     function defineGradient(svg) {
@@ -40,32 +66,5 @@ export default class SphereMap {
           'stop-opacity': STOP_GRADIENT
         });
     }
-
-    this.Update = function(svg) {
-      var svg = svg;
-      return function(data, x, y, series) {
-        if (!gradientIsDefined) {
-          defineGradient(svg);
-          gradientIsDefined = true;
-        }
-
-        series = svg.selectAll('circle')
-          .data(data)
-          .enter()
-          .append('circle')
-          .attr({
-            cx: (d) => {
-              return x(d.x);
-            },
-            cy: (d) => {
-              return y(d.y);
-            },
-            r: '10',
-            fill: "url(#sphere-gradient)"
-          });
-      }
-    }
-
-
   }
 }

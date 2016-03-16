@@ -16,8 +16,8 @@ class MouseMove {
 
   captureEvents() {
     // event listeners
-    this.windowObject.removeEventListener('mousemove');
-    this.windowObject.removeEventListener('mousestop');
+    this.windowObject.removeEventListener('mousemove', mouseMoveHandler);
+    this.windowObject.removeEventListener('mousestop', mouseStopHandler);
     this.windowObject.addEventListener('mousemove', mouseMoveHandler.bind(this));
     this.windowObject.addEventListener('mousestop', mouseStopHandler.bind(this));
 
