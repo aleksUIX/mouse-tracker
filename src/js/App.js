@@ -20,7 +20,7 @@ export default class App {
     const renderDirection = new RenderDirection('widget-direction');
 
     const renderHeatMapSphere = new RenderHeatmap('widget-sphere-map', 'sphere');
-    // const renderHeatMapSquare = new RenderHeatmap('widget-square-map', 'square');
+    const renderHeatMapSquare = new RenderHeatmap('widget-square-map', 'square');
 
     renderDirection.render();
   }
