@@ -21,6 +21,7 @@ export default class App {
 
     const renderHeatMapSphere = new RenderHeatmap('widget-sphere-map', 'sphere');
     // const renderHeatMapSquare = new RenderHeatmap('widget-square-map', 'square');
+    // const renderHeatMapVoronoi = new RenderHeatmap('widget-voronoi-map', 'voronoi');
 
     renderDirection.render();
   }
