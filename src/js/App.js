@@ -20,8 +20,12 @@ export default class App {
     const renderDirection = new RenderDirection('widget-direction');
 
     const renderHeatMapSphere = new RenderHeatmap('widget-sphere-map', 'sphere');
+<<<<<<< HEAD
     // const renderHeatMapSquare = new RenderHeatmap('widget-square-map', 'square');
     // const renderHeatMapVoronoi = new RenderHeatmap('widget-voronoi-map', 'voronoi');
+=======
+    const renderHeatMapSquare = new RenderHeatmap('widget-square-map', 'square');
+>>>>>>> 590b826b00fe0a5a2788755a5eebef76763d2b33
 
     renderDirection.render();
   }
