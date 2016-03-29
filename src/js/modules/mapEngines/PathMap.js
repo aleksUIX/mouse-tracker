@@ -1,7 +1,7 @@
-// Square heatmap engine
+// draw path of the mouse
 
 
-export default class SquareMap {
+export default class PathMap {
   constructor() {
 
   }
@@ -12,5 +12,4 @@ export default class SquareMap {
       console.log()
     }
   }
-
 }

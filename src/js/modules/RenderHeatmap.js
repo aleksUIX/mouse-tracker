@@ -9,6 +9,7 @@ import d3 from 'd3';
 
 import SphereMap from './mapEngines/SphereMap';
 import SquareMap from './mapEngines/SquareMap';
+import PathMap from './mapEngines/PathMap';
 import VoronoiMap from './mapEngines/VoronoiMap';
 import MouseMoveService from '../services/MouseMoveService';
 
@@ -25,6 +26,9 @@ export default class RenderHeatmap {
         break;
       case "voronoi":
         this.mapRenderer = new VoronoiMap();
+        break;
+      case "path":
+        this.mapRenderer = new PathMap();
         break;
       default:
         this.mapRenderer = new SphereMap();
