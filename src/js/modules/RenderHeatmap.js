@@ -11,6 +11,7 @@ import SphereMap from './mapEngines/SphereMap';
 import SquareMap from './mapEngines/SquareMap';
 import PathMap from './mapEngines/PathMap';
 import VoronoiMap from './mapEngines/VoronoiMap';
+import PositionMap from './mapEngines/PositionMap';
 import MouseMoveService from '../services/MouseMoveService';
 
 
@@ -29,6 +30,9 @@ export default class RenderHeatmap {
         break;
       case "path":
         this.mapRenderer = new PathMap();
+        break;
+      case "position":
+        this.mapRenderer = new PositionMap();
         break;
       default:
         this.mapRenderer = new SphereMap();

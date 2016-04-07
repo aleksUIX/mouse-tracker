@@ -8,6 +8,7 @@ class Line {
 
   define(x, y) {
     this.dataSeries = d3.svg.line()
+    .interpolate("basis")
       .x(function(d) {
         return x(d.time);
       })
