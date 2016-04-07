@@ -7,11 +7,11 @@
 // Take into account: square+area, square+colour, spherical+area, spherical+colour, spherical+colour/area, voronoi, voronoi+color; one-dimensional gradient: top-bottom, left-right
 import d3 from 'd3';
 
-import SphereMap from './mapEngines/SphereMap';
-import SquareMap from './mapEngines/SquareMap';
-import PathMap from './mapEngines/PathMap';
-import VoronoiMap from './mapEngines/VoronoiMap';
-import PositionMap from './mapEngines/PositionMap';
+import Sphere from './mapEngines/Sphere';
+import Square from './mapEngines/Square';
+import Path from './mapEngines/Path';
+import Voronoi from './mapEngines/Voronoi';
+import Position from './mapEngines/Position';
 import MouseMoveService from '../services/MouseMoveService';
 
 
@@ -20,22 +20,22 @@ export default class RenderHeatmap {
 
     switch (mapType) {
       case "sphere":
-        this.mapRenderer = new SphereMap();
+        this.mapRenderer = new Sphere();
         break;
       case "square":
-        this.mapRenderer = new SquareMap();
+        this.mapRenderer = new Square();
         break;
       case "voronoi":
-        this.mapRenderer = new VoronoiMap();
+        this.mapRenderer = new Voronoi();
         break;
       case "path":
-        this.mapRenderer = new PathMap();
+        this.mapRenderer = new Path();
         break;
       case "position":
-        this.mapRenderer = new PositionMap();
+        this.mapRenderer = new Position();
         break;
       default:
-        this.mapRenderer = new SphereMap();
+        this.mapRenderer = new Sphere();
         break;
     }
 
