@@ -12,6 +12,7 @@ import Square from './mapEngines/Square';
 import Path from './mapEngines/Path';
 import Voronoi from './mapEngines/Voronoi';
 import Position from './mapEngines/Position';
+import Gradient from './mapEngines/Gradient';
 import MouseMoveService from '../services/MouseMoveService';
 
 
@@ -33,6 +34,9 @@ export default class RenderHeatmap {
         break;
       case "position":
         this.mapRenderer = new Position();
+        break;
+      case "gradient":
+        this.mapRenderer = new Gradient();
         break;
       default:
         this.mapRenderer = new Sphere();
